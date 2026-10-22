@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Dino AI · 技术状态</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dino AI · Tech State">
+<meta property="og:description" content="Three weeks of tech work at Dino AI — what health work is closing, and what exploration is betting on.">
+<title>Dino AI · Tech State</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMiAzMic+PHJlY3Qgd2lkdGg9JzMyJyBoZWlnaHQ9JzMyJyByeD0nNycgZmlsbD0nI2Y2ZjFlNycvPjxyZWN0IHg9JzUuNScgeT0nOS41JyB3aWR0aD0nMjEnIGhlaWdodD0nMTYuNScgcng9JzQuNScgZmlsbD0nIzFmMmEyNCcvPjxyZWN0IHg9JzE0LjcnIHk9JzQuMicgd2lkdGg9JzIuNicgaGVpZ2h0PSc1LjQnIHJ4PScxLjMnIGZpbGw9JyMxZjJhMjQnLz48Y2lyY2xlIGN4PScxNicgY3k9JzMuNCcgcj0nMi4yJyBmaWxsPScjMmU4YjU3Jy8+PHJlY3QgeD0nOS42JyB5PScxNCcgd2lkdGg9JzUuNCcgaGVpZ2h0PSc1LjQnIHJ4PScxLjcnIGZpbGw9JyM1ZmQzOWEnLz48cmVjdCB4PScxNycgeT0nMTQnIHdpZHRoPSc1LjQnIGhlaWdodD0nNS40JyByeD0nMS43JyBmaWxsPScjNWZkMzlhJy8+PHJlY3QgeD0nMTEuMicgeT0nMjInIHdpZHRoPSc5LjYnIGhlaWdodD0nMS43JyByeD0nLjg1JyBmaWxsPScjNWZkMzlhJyBvcGFjaXR5PScuOScvPjxyZWN0IHg9JzIuOCcgeT0nMTQuNicgd2lkdGg9JzIuNicgaGVpZ2h0PSc2LjInIHJ4PScxLjMnIGZpbGw9JyMxZjJhMjQnLz48cmVjdCB4PScyNi42JyB5PScxNC42JyB3aWR0aD0nMi42JyBoZWlnaHQ9JzYuMicgcng9JzEuMycgZmlsbD0nIzFmMmEyNCcvPjwvc3ZnPg==">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -512,7 +515,7 @@ const HALF = {
 
 const I18N = {
   zh: {
-    docTitle:'Dino AI · 技术状态',
+    docTitle:'Dino AI · Tech State',
     brand:'Dino AI · Tech',
     nav:[['#top','总览'],['#weeks','三周迭代']],
     kicker:'Dino AI · Tech State',
@@ -546,7 +549,9 @@ const I18N = {
 /* ---------------- render ---------------- */
 
 const $ = (s, r=document) => r.querySelector(s);
-let LANG = localStorage.getItem('dino-tech-lang') || 'zh';
+/* 没选过语言时按浏览器语言判断：中文环境给中文，其余默认英文 */
+let LANG = localStorage.getItem('dino-tech-lang')
+  || ((navigator.language || '').toLowerCase().startsWith('zh') ? 'zh' : 'en');
 
 function counts(items){
   const c = {P0:0,P1:0,P2:0,un:0};
@@ -641,7 +646,7 @@ function nodes(){
 function render(){
   const T = I18N[LANG];
   document.documentElement.lang = LANG === 'zh' ? 'zh-CN' : 'en';
-  document.title = T.docTitle;
+  document.title = 'Dino AI · Tech State';   /* 标签页固定英文，读者以海外为主 */
 
   const n = WK.map(w => w.items.length);
   $('#brand').textContent = T.brand;
