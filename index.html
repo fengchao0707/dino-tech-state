@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Dino AI · 技术状态</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMiAzMic+PHJlY3Qgd2lkdGg9JzMyJyBoZWlnaHQ9JzMyJyByeD0nNycgZmlsbD0nI2Y2ZjFlNycvPjxyZWN0IHg9JzUuNScgeT0nOS41JyB3aWR0aD0nMjEnIGhlaWdodD0nMTYuNScgcng9JzQuNScgZmlsbD0nIzFmMmEyNCcvPjxyZWN0IHg9JzE0LjcnIHk9JzQuMicgd2lkdGg9JzIuNicgaGVpZ2h0PSc1LjQnIHJ4PScxLjMnIGZpbGw9JyMxZjJhMjQnLz48Y2lyY2xlIGN4PScxNicgY3k9JzMuNCcgcj0nMi4yJyBmaWxsPScjMmU4YjU3Jy8+PHJlY3QgeD0nOS42JyB5PScxNCcgd2lkdGg9JzUuNCcgaGVpZ2h0PSc1LjQnIHJ4PScxLjcnIGZpbGw9JyM1ZmQzOWEnLz48cmVjdCB4PScxNycgeT0nMTQnIHdpZHRoPSc1LjQnIGhlaWdodD0nNS40JyByeD0nMS43JyBmaWxsPScjNWZkMzlhJy8+PHJlY3QgeD0nMTEuMicgeT0nMjInIHdpZHRoPSc5LjYnIGhlaWdodD0nMS43JyByeD0nLjg1JyBmaWxsPScjNWZkMzlhJyBvcGFjaXR5PScuOScvPjxyZWN0IHg9JzIuOCcgeT0nMTQuNicgd2lkdGg9JzIuNicgaGVpZ2h0PSc2LjInIHJ4PScxLjMnIGZpbGw9JyMxZjJhMjQnLz48cmVjdCB4PScyNi42JyB5PScxNC42JyB3aWR0aD0nMi42JyBoZWlnaHQ9JzYuMicgcng9JzEuMycgZmlsbD0nIzFmMmEyNCcvPjwvc3ZnPg==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f1e7;
+  --paper-deep:#efe7d6;
+  --card:#fffdf8;
+  --ink:#1f2a24;
+  --ink-soft:#3f4d47;
+  --faint:#5c6a63;
+  --green:#1d5c3f;
+  --green-2:#2e8b57;
+  --orange:#b8591a;
+  --line:#d8cfba;
+  --line-soft:#e6ddca;
+  --serif:'Fraunces','Noto Serif SC','Songti SC',Georgia,serif;
+  --sans:'Noto Sans SC','PingFang SC','Hiragino Sans GB','Helvetica Neue',Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-weight:400;line-height:1.72;-webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(ellipse 70% 50% at 108% -8%, rgba(46,139,87,.06), transparent),
+    radial-gradient(ellipse 55% 45% at -8% 102%, rgba(184,89,26,.05), transparent);
+  background-attachment:fixed;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.3;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.022 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{max-width:1140px;margin:0 auto;padding:0 32px}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:70;height:54px;
+  background:rgba(246,241,231,.94);border-bottom:1px solid var(--line);
+  backdrop-filter:blur(12px);
+}
+.topbar .wrap{height:100%;display:flex;align-items:center;gap:22px}
+.brandwrap{display:flex;align-items:center;gap:9px;flex:0 0 auto}
+.mark{width:22px;height:22px;display:block;flex:0 0 auto}
+.brand{
+  font-family:var(--serif);font-size:11px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--faint);white-space:nowrap;
+}
+.navlinks{display:flex;align-items:center;gap:2px;min-width:0;overflow:auto;scrollbar-width:none}
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{
+  text-decoration:none;color:var(--ink-soft);font-size:13px;font-weight:600;
+  padding:6px 13px;border-radius:99px;white-space:nowrap;transition:background .18s,color .18s;
+}
+.navlinks a:hover{color:var(--green);background:var(--paper-deep)}
+.navlinks a.on{color:#fff;background:var(--green)}
+.lang{margin-left:auto;display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;flex:0 0 auto;background:var(--card)}
+.lang button{
+  font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.06em;
+  padding:5px 11px;border:0;background:transparent;color:var(--faint);cursor:pointer;transition:.18s;
+}
+.lang button.on{background:var(--ink);color:var(--paper)}
+
+/* ---------- masthead ---------- */
+.masthead{padding:62px 0 0}
+.kicker{
+  font-family:var(--serif);font-size:12px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:14px;
+}
+.kicker::before{content:"";width:42px;height:1px;background:var(--green)}
+h1{
+  font-family:var(--serif);font-weight:600;font-size:clamp(38px,5.4vw,60px);
+  line-height:1.12;letter-spacing:-.01em;margin:14px 0 0;
+}
+h1 em{font-style:normal;color:var(--green)}
+.lede{margin-top:18px;max-width:52em;font-size:16.5px;line-height:1.78;color:var(--ink-soft);font-weight:400}
+.lede b{font-weight:600;color:var(--ink)}
+.meta-row{
+  display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:26px;padding-top:16px;
+  border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);
+}
+.meta-row b{color:var(--ink);font-weight:600}
+.meta-row .cut{color:var(--orange);font-weight:600}
+
+/* ---------- week rail (sticky) ---------- */
+.tl{
+  position:sticky;top:54px;z-index:60;margin-top:44px;
+  background:rgba(246,241,231,.94);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  backdrop-filter:blur(10px);
+}
+nav.tl .wrap{display:flex;overflow-x:auto;gap:0;scrollbar-width:none}
+nav.tl .wrap::-webkit-scrollbar{display:none}
+nav.tl a{
+  flex:1;min-width:120px;text-align:center;text-decoration:none;color:var(--ink-soft);
+  padding:12px 8px 10px;font-size:12.5px;letter-spacing:.04em;position:relative;
+  border-left:1px solid var(--line);transition:background .25s,color .25s;white-space:nowrap;
+}
+nav.tl a:first-child{border-left:none}
+nav.tl a b{
+  display:block;font-family:var(--serif);font-size:17.5px;font-weight:700;color:var(--ink);
+  line-height:1.3;transition:color .25s;
+}
+nav.tl a time{display:block;font-size:11px;color:var(--faint);letter-spacing:.08em;margin-top:1px}
+nav.tl a:hover{background:var(--paper-deep)}
+nav.tl a.on{background:var(--ink)}
+nav.tl a.on b,nav.tl a.on time{color:var(--paper)}
+nav.tl a[data-current]::after{
+  content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:5px;
+  width:4px;height:4px;border-radius:50%;background:var(--orange);
+}
+nav.tl a.on[data-current]::after{background:#e9a06a}
+
+/* ---------- nodes ---------- */
+.node{
+  display:grid;grid-template-columns:200px 1fr;gap:0;
+  padding:54px 0 54px;border-bottom:1px solid var(--line);position:relative;
+  scroll-margin-top:132px;
+}
+.node::before{
+  content:"";position:absolute;left:99px;top:0;bottom:0;width:1px;
+  background:repeating-linear-gradient(to bottom,var(--line) 0 6px,transparent 6px 12px);
+}
+.node-marker{position:relative;padding-right:40px}
+.node-marker .dot{
+  position:absolute;left:92px;top:9px;width:15px;height:15px;border-radius:50%;
+  background:var(--paper);border:3px solid var(--green);z-index:2;
+}
+.node-date{
+  font-family:var(--serif);font-size:27px;font-weight:900;line-height:1.1;
+  color:var(--ink);text-align:right;width:84px;letter-spacing:-.01em;
+}
+.node-sub{
+  width:84px;text-align:right;font-size:11.5px;color:var(--ink-soft);
+  letter-spacing:.04em;margin-top:7px;line-height:1.65;
+}
+.node.core .dot{border-color:var(--orange);background:var(--orange);box-shadow:0 0 0 5px rgba(184,89,26,.10)}
+.node.core .node-date{color:var(--orange)}
+
+.node-body{padding-left:48px;min-width:0}
+.node-title{
+  font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:700;
+  line-height:1.3;margin-bottom:4px;
+}
+.node-title .tag{
+  display:inline-block;vertical-align:5px;margin-left:12px;font-family:var(--sans);
+  font-size:11px;font-weight:500;letter-spacing:.12em;padding:3px 10px;
+  border-radius:99px;border:1px solid var(--green);color:var(--green);
+}
+.node.core .node-title .tag{border-color:var(--orange);color:var(--orange)}
+.node.core .node-title .tag.live{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:600}
+.story{
+  margin:16px 0 22px;padding:16px 22px;background:var(--card);border-left:4px solid var(--green);
+  font-size:15px;line-height:1.85;color:var(--ink);box-shadow:0 2px 12px rgba(31,42,36,.04);
+}
+.node.core .story{border-left-color:var(--orange)}
+.story b{font-weight:600}
+.story .lab{
+  display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:6px;font-weight:600;
+}
+
+/* ---------- two halves per week ---------- */
+.half{margin-top:28px;border-left:3px solid var(--green);padding:2px 0 2px 24px}
+.half.bet{border-left-color:var(--orange)}
+.half-head{
+  display:flex;align-items:baseline;gap:12px;
+  font-family:var(--serif);font-size:20px;font-weight:700;line-height:1.35;
+}
+.half-n{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--ink-soft)}
+.half-sub{font-size:12px;color:var(--ink-soft);margin-top:3px;margin-bottom:14px;letter-spacing:.02em}
+.half .grp:first-of-type{margin-top:0}
+
+/* ---------- gate groups ---------- */
+.grp{margin-top:22px}
+.grp:first-of-type{margin-top:0}
+.grp-head{
+  display:flex;align-items:center;gap:9px;margin-bottom:4px;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--green);font-weight:700;
+}
+.grp-head .n{letter-spacing:0;color:var(--faint);font-weight:700}
+.grp-head .g-gloss{letter-spacing:0;text-transform:none;font-weight:500;color:var(--ink-soft);font-size:11px}
+.grp-head .ln{flex:1;height:1px;background:var(--line)}
+.items{list-style:none}
+.it{padding:9px 0;border-top:1px solid var(--line-soft)}
+.it:first-child{border-top:0}
+.it-l1{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.it-t{font-size:14px;font-weight:600;letter-spacing:-.003em;color:var(--ink)}
+a.it-t{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
+a.it-t:hover{border-bottom-color:#b9ae95}
+a.it-t .lk{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:16px;height:16px;margin-left:7px;border-radius:3px;
+  background:var(--green);color:#fff;vertical-align:1px;
+  transition:background .15s,transform .15s;
+}
+a.it-t .lk svg{width:11px;height:11px;display:block;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+a.it-t:hover .lk{background:#14402c;transform:translateY(-1px)}
+.it-meta{margin-left:auto;display:flex;align-items:baseline;gap:11px;font-size:11.5px;color:var(--faint);white-space:nowrap}
+.it-w{color:var(--ink);font-weight:500}
+.it-d{font-variant-numeric:tabular-nums}
+.it-l2{font-size:12.5px;color:var(--ink-soft);margin-top:4px;line-height:1.6}
+.it-l2 mark{background:#d8efdf;color:#155f3b;font-weight:600;padding:0 4px;border-radius:2px;box-decoration-break:clone}
+.secret{
+  flex:0 0 auto;font-size:10px;font-weight:600;letter-spacing:.03em;
+  padding:1px 8px;border-radius:99px;background:#fbeedd;color:#a35d19;
+  border:1px dashed #daa878;white-space:nowrap;
+}
+.p-badge{
+  flex:0 0 auto;font-size:10px;font-weight:700;letter-spacing:.06em;
+  padding:1px 6px;border-radius:2px;border:1px solid var(--line);color:var(--faint);
+}
+.p-badge.p0{background:#b3402a;border-color:#b3402a;color:#fff}
+.p-badge.p1{background:#f4e2cf;border-color:#d9641e;color:#a24615}
+.it-access{
+  display:flex;gap:18px;flex-wrap:wrap;align-items:baseline;
+  margin-top:9px;padding-top:8px;border-top:1px dashed #e7d4b8;
+  font-size:11.5px;color:#7b5a39;font-variant-numeric:tabular-nums;
+}
+.it-access b{font-weight:600;margin-right:5px;color:#8a6a49}
+.it-access a{color:#7b5a39;text-decoration:underline;text-underline-offset:2px}
+.it-access a:hover{color:var(--green)}
+.it-note{font-size:11.5px;color:var(--faint);margin-top:5px;letter-spacing:.02em}
+.it-note::before{content:"·  ";color:#a9b3ac}
+.it.long .it-note{font-size:12px;margin-top:7px;color:#8a6a49}
+.it.long .it-note::before{content:"·  ";color:#c0a583}
+.it.long{
+  margin:12px 0;padding:14px 16px 13px;border-top:0;border-radius:4px;
+  background:#fdf5ea;box-shadow:inset 3px 0 0 #ddab74;
+}
+.it.long + .it{border-top:0}
+.it.long .it-t{font-size:17px;font-weight:700;letter-spacing:-.012em}
+.it.long .it-l2{font-size:13px;margin-top:5px;color:var(--ink-soft)}
+.it.long .it-meta{font-size:11.5px}
+.it.long .it-d{background:#f3dfc6;color:#8a4a16;padding:1px 8px;border-radius:99px;font-weight:600;font-variant-numeric:tabular-nums}
+.it.long .it.wip .it-t::before,.it.long.wip .it-t::before{width:12px;height:12px;
+  -webkit-mask:radial-gradient(circle, transparent 0 3.6px, #000 3.8px);
+  mask:radial-gradient(circle, transparent 0 3.6px, #000 3.8px);}
+.it.wip .it-t::before{
+  content:"";display:inline-block;width:11px;height:11px;border-radius:50%;
+  background:conic-gradient(#c2671f 0 72%, #ddd3bd 72% 100%);
+  -webkit-mask:radial-gradient(circle, transparent 0 3.2px, #000 3.4px);
+  mask:radial-gradient(circle, transparent 0 3.2px, #000 3.4px);
+  margin-right:7px;vertical-align:-1px;
+}
+.it.done .it-t{color:var(--green)}
+.it.done .it-t::before{content:"✓ ";color:var(--green);font-weight:700}
+.it.done .it-d{color:var(--green)}
+
+/* ---------- footer ---------- */
+.foot{padding:34px 0 72px}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:44px}
+.foot h3{font-family:var(--serif);font-size:18px;font-weight:700;margin-bottom:10px}
+.foot p{font-size:13.5px;color:var(--ink-soft);line-height:1.75;font-weight:400;max-width:40em}
+.log{list-style:none;font-size:12.5px;color:var(--ink-soft);line-height:1.9}
+.log time{font-family:var(--serif);color:var(--ink-soft);margin-right:10px;font-variant-numeric:tabular-nums}
+.foot-bot{
+  margin-top:34px;padding-top:16px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:6px 18px;font-size:11px;color:var(--faint);
+}
+
+/* ---------- motion ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .node{grid-template-columns:1fr;padding:42px 0 44px}
+  .node::before{display:none}
+  .node-marker{display:flex;gap:14px;align-items:baseline;padding:0 0 14px}
+  .node-date{text-align:left;width:auto;font-size:24px}
+  .node-sub{text-align:left;width:auto;margin-top:0}
+  .node-marker .dot{position:static;margin-right:2px}
+  .node-body{padding-left:0}
+  .foot-grid{grid-template-columns:1fr;gap:30px}
+}
+@media(max-width:760px){
+  .wrap{padding:0 20px}
+  .navlinks{display:none}
+  .masthead{padding-top:40px}
+  nav.tl a{min-width:104px;padding:10px 6px 9px}
+  nav.tl a b{font-size:15px}
+}
+@media(max-width:520px){
+  .it-meta{width:100%;margin-left:0;gap:12px}
+}
+@media print{
+  body{background:#fff}
+  body::before,.topbar,.tl,.lang{display:none}
+  .node{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brandwrap">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="5.5" y="9.5" width="21" height="16.5" rx="4.5" fill="#1f2a24"/>
+        <rect x="14.7" y="4.2" width="2.6" height="5.4" rx="1.3" fill="#1f2a24"/>
+        <circle cx="16" cy="3.4" r="2.2" fill="#2e8b57"/>
+        <rect x="9.6" y="14" width="5.4" height="5.4" rx="1.7" fill="#5fd39a"/>
+        <rect x="17" y="14" width="5.4" height="5.4" rx="1.7" fill="#5fd39a"/>
+        <rect x="11.2" y="22" width="9.6" height="1.7" rx=".85" fill="#5fd39a" opacity=".9"/>
+        <rect x="2.8" y="14.6" width="2.6" height="6.2" rx="1.3" fill="#1f2a24"/>
+        <rect x="26.6" y="14.6" width="2.6" height="6.2" rx="1.3" fill="#1f2a24"/>
+      </svg>
+      <span class="brand" id="brand">Dino AI · Tech</span>
+    </div>
+    <nav class="navlinks" id="nav" aria-label="Sections"></nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="zh" class="on">中</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <header class="masthead" id="top">
+    <div class="kicker" id="kicker"></div>
+    <h1 id="h1"></h1>
+    <p class="lede" id="lede"></p>
+    <div class="meta-row" id="meta"></div>
+  </header>
+</main>
+
+<nav class="tl" id="weeks" aria-label="Weeks">
+  <div class="wrap" id="week-rail"></div>
+</nav>
+
+<main class="wrap" id="board"></main>
+
+<main class="wrap">
+  <footer class="foot" id="feedback">
+    <div class="foot-grid">
+      <div>
+        <h3 id="fb-title"></h3>
+        <p id="fb-text"></p>
+      </div>
+      <div>
+        <h3 id="log-title"></h3>
+        <ul class="log" id="log-list"></ul>
+      </div>
+    </div>
+    <div class="foot-bot" id="foot-bot"></div>
+  </footer>
+</main>
+
+<noscript><p style="padding:24px">This page renders with JavaScript.</p></noscript>
+
+<script>
+/* ============================================================
+   Dino AI · 技术状态 / Tech State
+   ------------------------------------------------------------
+   结构对齐产品里程碑页：页头 → 周轴（吸顶） → 每周一个时间线节点。
+   每周维护只改 WK：最前面一周整块删掉、末尾补一个空周即可。
+   规则：日期取台账原文；不确定的写 '—'，不填估计值。
+   ============================================================ */
+
+const WK = [
+  { id:'W43', href:'#w43', core:true, live:true, date:{zh:'本周',en:'This week'}, range:{zh:'10/20 – 10/24',en:'Oct 20 – 24'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
+    rail:{zh:'10/20 – 10/24',en:'Oct 20 – 24'},
+    title:{zh:'本周交付',en:'This week'},
+    story:{zh:'<span class="lab">技术专项会 · 10-21 版台账 · {n} 项</span>{prio}，已完成 {done} 项。这一周的重心是补埋点，把进课和支付这两段路真正量出来；AI teacher 的体积也开始往下走。',
+           en:'<span class="lab">Tech review · Oct 21 ledger · {n} items</span>{prio}; {done} already done. The week is about closing instrumentation gaps and making entry and payment measurable; AI teacher assets start shrinking.'},
+    items:[
+      { t:{zh:'课中指标常态化建设',en:'Standing in-class metrics'}, w:'董鹏', p:'P0', d:{zh:'10-24',en:'Oct 24'}, gate:'entry', done:true,
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/S0ZIwVAR4iRtQvkQ1ZJj5yvTpVf', dl:{zh:'预加载命中率等指标定口径、接进常态化看板，不再临时捞数',en:'Preload hit-rate and peers get a fixed definition and a standing dashboard; no more ad-hoc pulls'} },
+      { t:{zh:'用 Atlas 缩小 AI teacher 的体积',en:'Shrink AI teacher assets with Atlas'}, w:'李龙飞', p:'P1', d:{zh:'Max 已降',en:'Max done'}, gate:'entry', done:true,
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/IvWCwgAzuiBMdikvvJIjewGkpTs', dl:{zh:'Max <mark>120MB → 80MB</mark>；Leo 和 Kim 还在做',en:'Max <mark>120MB → 80MB</mark>; Leo and Kim still in progress'} },
+      { t:{zh:'教室性能提升，方案确定',en:'Classroom performance, approach fixed'}, w:'刘亚平 / 李政 / 鲁新建', p:'P0', d:{zh:'10-25',en:'Oct 25'}, gate:'hold', done:true,
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Mk7LwdhuAiXDzekbsWJj1IlKpo8', dl:{zh:'把 H5 视频换成 Native 视频：性能更好，低端机也能跑',en:'H5 video replaced with native video: better performance, usable on low-end devices'} },
+      { t:{zh:'Apple 登录异常补埋点',en:'Instrument Apple sign-in failures'}, w:'付玉佳', p:'P1', d:{zh:'本周',en:'This week'}, gate:'entry', done:true,
+        dl:{zh:'区分 14002 与 SDK 返错，Apple 与安卓分列',en:'Separate 14002 from SDK errors; Apple and Android counted apart'} },
+      { t:{zh:'App 端 · 支付链路补埋点',en:'App · payment failure instrumentation'}, w:'郭浦然 / 覃熠珲', p:'P1', d:{zh:'本周',en:'This week'}, gate:'pay', done:true,
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Iy3CwpLRTiLB0tkxR8ijpn3qpwd', dl:{zh:'把「支付不可用」按原因拆开',en:'Break “payment unavailable” down by cause'} },
+      { t:{zh:'服务端 · 支付稳定性看板',en:'Server · payment reliability dashboard'}, w:'罗伟', p:'P1', d:{zh:'本周启动',en:'Starts this week'}, gate:'pay', done:true,
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Xc1zw3nHzihoIdkxaTEjDAXjpie', dl:{zh:'支付方式 × 厂商矩阵下钻，技术侧按 99% 考核',en:'Method × provider drill-down; 99% internal SLA'} },
+      { t:{zh:'listener demo 测通',en:'Listener demo validated'}, w:'董鹏 / 刘思远', p:'P1', d:{zh:'本周',en:'This week'}, kind:'bet', gate:'bet', wip:true,
+        dl:{zh:'内部自测效果结论 + 接不接的判断',en:'Internal result and a go / no-go call'} },
+      { t:{zh:'双路 ASR 方案评估',en:'Dual-ASR architecture review'}, w:'董鹏', p:'P1', d:{zh:'本周',en:'This week'}, kind:'bet', gate:'bet', wip:true,
+        dl:{zh:'两路冲突以谁为准、时间戳怎么对齐、成本是否成立',en:'Which path wins on conflict, how timestamps align, whether the cost works'} },
+      { t:{zh:'用 slock.ai 搭建 AI 研发团队',en:'Build an AI engineering team on slock.ai'}, w:'李辰凯 / 冯超', p:'P1', d:{zh:'2 周+',en:'2 weeks+'}, kind:'bet', gate:'bet', wip:true, long:true,
+        dl:{zh:'第一个试验：用 slock.ai 构建 Landing Page，<mark>有希望极大程度提升研发效能</mark>',en:'First experiment: ship a landing page built with slock.ai — <mark>could lift engineering throughput substantially</mark>'} },
+      { t:{zh:'云测',en:'Cloud testing'}, w:'许效维', p:'P1', d:{zh:'2 周+',en:'2 weeks+'}, kind:'bet', gate:'bet', wip:true, long:true,
+        dl:{zh:'<mark>有希望极大程度提升测试效能</mark>',en:'<mark>could lift QA throughput substantially</mark>'} },
+      { t:{zh:'Dino BI Chat Bot',en:'Dino BI Chat Bot'}, w:'郝飞飞', p:'P1', d:{zh:'3 周+',en:'3 weeks+'}, kind:'bet', gate:'bet', wip:true, long:true, dur:{zh:'3 周+',en:'3 weeks+'},
+        doc:'http://136.85.56.181/',
+        access:{zh:'<span><b>地址</b> <a href="http://136.85.56.181/" target="_blank" rel="noopener">http://136.85.56.181/</a></span><span><b>账号</b> Dino-Bot</span><span><b>密码</b> <em style="font-style:normal;color:#a9a196">找郝飞飞取</em></span>',
+                en:'<span><b>URL</b> <a href="http://136.85.56.181/" target="_blank" rel="noopener">http://136.85.56.181/</a></span><span><b>Account</b> Dino-Bot</span><span><b>Password</b> <em style="font-style:normal;color:#a9a196">ask Feifei</em></span>'},
+        dl:{zh:'数据查询、数据地图、血缘分析、智能问数四条已能用；并不完善',en:'Queries, a data map, lineage and natural-language questions already work; not finished'} },
+      { t:{zh:'课中指标平台',en:'In-class metrics platform'}, w:'赵腾', p:'P0', d:{zh:'本周',en:'This week'}, gate:'base', wip:true,
+        doc:'http://fc-singapore.lionabc.com/dinoai-holmes/stats/query', dl:{zh:'覆盖 11 位产品、教研、业务同学',en:'Reach 11 people across product, curriculum and business'} },
+      { t:{zh:'Global 数据迁新加坡',en:'Global data move to Singapore'}, w:'董鹏', p:'P0', d:{zh:'本周',en:'This week'}, gate:'base',
+        secret:{zh:'🙈 top secret · 请当做没看见',en:'🙈 top secret · pretend you did not see this'},
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/OMtVwd2KSibgcTkiWWfjX6fVpTw', dl:{zh:'按区域合规要求落库',en:'Land data per regional compliance'} },
+      { t:{zh:'数据标注平台升级',en:'Annotation platform upgrade'}, w:'李辰凯 / 刘思远', p:'P1', d:{zh:'2 周+',en:'2 weeks+'}, gate:'base',
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/W7DUwmG9xi0MWjkzV25jeReZpMh', dl:{zh:'面向更多众包标注人员，把产能从内部扩到外部',en:'Open annotation to far more crowd workers, not just the internal team'} }
+    ]},
+  { id:'W44', href:'#w44', date:{zh:'下周',en:'Next week'}, range:{zh:'10/27 – 10/31',en:'Oct 27 – 31'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
+    rail:{zh:'10/27 – 10/31',en:'Oct 27 – 31'},
+    title:{zh:'下周交付',en:'Next week'},
+    story:{zh:'<span class="lab">承接 10-21 台账 · {n} 项</span>{prio}，另有 {un} 项未定级。四个收口点：包体缩减与进课速度提升 10-30、短信漏斗 10-28、教室性能客户端接入 10-30 具备提测条件。',
+           en:'<span class="lab">Carried from the Oct 21 ledger · {n} items</span>{prio}, plus {un} unranked. Four things close here: size reduction and entry speed on Oct 30, the SMS funnel on Oct 28, and classroom-performance client integration test-ready on Oct 30.'},
+    items:[
+      { t:{zh:'App 包体缩减',en:'Shrink the app package'}, w:'贾宾', p:'P0', d:{zh:'10-30',en:'Oct 30'}, gate:'entry',
+        dl:{zh:'包体能缩到多少、给教学必要资源留多少空间，月末收敛结论',en:'How small the package can get and how much room teaching-critical assets need; converged by month end'} },
+      { t:{zh:'进课速度提升',en:'Faster class entry'}, w:'张帝', p:'P0', d:{zh:'10-30',en:'Oct 30'}, gate:'entry',
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/SoK4wht6siMMCwkW1ECjVjI0pFc', dl:{zh:'进课成功率与进课耗时的同口径指标，接进常态化看板',en:'Entry success and entry time on one definition, wired into the standing dashboard'} },
+      { t:{zh:'短信漏斗',en:'SMS funnel'}, w:'李辰凯 / 刘阳阳', p:'P0', d:{zh:'10-28',en:'Oct 28'}, gate:'entry',
+        doc:'https://floral-bush-1417.lauyoung0207.workers.dev/reports/', dl:{zh:'发码、送达、填写、校验逐层折损，下周过会更新',en:'Wastage at each step: send, deliver, enter, verify — updated at the next review'} },
+      { t:{zh:'机型 × 系统 × 课程表现分层',en:'Device × OS × lesson performance tiers'}, w:'张帅', p:'P1', d:{zh:'10-31',en:'Oct 31'}, gate:'hold',
+        dl:{zh:'分档机型表现差异，含已埋点的 CPU 与温度',en:'Difference across device tiers, including CPU and temperature already instrumented'} },
+      { t:{zh:'告警降噪与统一收口',en:'Alert noise reduction and ownership'}, w:'付玉佳 / 沈延涛 / 燕航', p:'P1', d:{zh:'下周',en:'Next week'}, gate:'hold',
+        dl:{zh:'告警条数明显下降且异常不漏',en:'Far fewer alerts, no missed anomalies'} },
+      { t:{zh:'教室性能：客户端接入联调',en:'Classroom performance: client integration'}, w:'刘亚平 / 李政 / 鲁新建', p:'P0', d:{zh:'10-30 提测准备',en:'Test-ready Oct 30'}, gate:'hold',
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Mk7LwdhuAiXDzekbsWJj1IlKpo8', dl:{zh:'学生视频 Native 接入，保留 H5 与回退路径',en:'Native student video, with H5 and rollback kept'} },
+      { t:{zh:'麦克风授权率与卡点归因',en:'Microphone permission rate and drop-off'}, w:'董鹏 / 毕燕晨', p:'P1', d:{zh:'下周',en:'Next week'}, gate:'voice',
+        dl:{zh:'授权前移方案 + 占进课流失 6–8% 的归因',en:'Moving the prompt earlier, plus the 6–8% entry-loss attribution'} },
+      { t:{zh:'课中巡检与告警',en:'In-class inspection and alerting'}, w:'翟亚南', p:'P1', d:{zh:'下周',en:'Next week'}, gate:'hold',
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/OXH1wdoC8iCQbGkwqRijnnS7ppb', dl:{zh:'并入课中指标平台，教研产品研发拉进巡检群',en:'Folded into the in-class metrics platform; curriculum, product and eng in one room'} },
+      { t:{zh:'监控与故障发现',en:'Monitoring and fault detection'}, w:'李晓鹏 / 郭武鑫', p:'P1', d:{zh:'下周',en:'Next week'}, gate:'hold',
+        doc:'https://dino-health-review-20261019.yanhang291.chatgpt.site/#3', dl:{zh:'紧急异常规则 + 半小时轮询 + 故障报告',en:'Urgent-anomaly rules, half-hourly polling, fault reports'} },
+      { t:{zh:'口型：音频直驱接入 web',en:'Lip-sync: direct audio drive on web'}, w:'李龙飞', p:'—', d:{zh:'10 月底',en:'End of Oct'}, kind:'bet', gate:'voice',
+        doc:'https://docs.google.com/presentation/d/1NfXyhAXyYYa7HyZiMpV70TRtpE1qs9yZLYluNFGVkB4/edit?slide=id.h7f13d154489f488d_0_70#slide=id.h7f13d154489f488d_0_70', dl:{zh:'web 端接入音频直驱，10 月底是验收点',en:'Web hooks up direct audio drive; end of October is the gate'} },
+      { t:{zh:'小语种与方言 listener 口径',en:'Listener scope for small languages and dialects'}, w:'孔丽莉 / 毕燕晨', p:'P1', d:{zh:'下周',en:'Next week'}, kind:'bet', gate:'bet',
+        dl:{zh:'场景、语料来源、标注分工、语料量目标',en:'Scenarios, corpus sources, annotation split, volume target'} },
+      { t:{zh:'用 slock.ai 搭建 AI 研发团队',en:'Build an AI engineering team on slock.ai'}, w:'李辰凯 / 冯超', p:'P1', d:{zh:'承接 W43',en:'from W43'}, kind:'bet', gate:'bet', wip:true, long:true,
+        dl:{zh:'从 Landing Page 扩到第二个试验，<mark>有希望极大程度提升研发效能</mark>',en:'From the landing page to a second experiment — <mark>could lift engineering throughput substantially</mark>'} },
+      { t:{zh:'云测',en:'Cloud testing'}, w:'许效维', p:'P1', d:{zh:'承接 W43',en:'from W43'}, kind:'bet', gate:'bet', wip:true, long:true,
+        dl:{zh:'继续验证，<mark>有希望极大程度提升测试效能</mark>',en:'Still validating — <mark>could lift QA throughput substantially</mark>'} }
+    ]},
+
+  { id:'W45+', href:'#w45', date:{zh:'之后',en:'Beyond'}, range:{zh:'11/03 起',en:'From Nov 3'},
+    rail:{zh:'起 11/03',en:'From Nov 3'},
+    title:{zh:'下下周及以后',en:'Week after, and beyond'},
+    story:{zh:'<span class="lab">在跑、暂无承诺日期 · {n} 项</span>按现有台账，11 月第一周还没有带日期的承诺。上面是健康度在跑的活，下面是还没到结论的探索。',
+           en:'<span class="lab">Running, no committed date · {n} items</span>On the current ledger the first week of November has no dated commitment. Above: health work in flight. Below: bets without an answer yet.'},    items:[
+      { t:{zh:'iPhone Duo 适配',en:'iPhone Duo adaptation'}, w:'Leong / 魏博源', p:'—', d:{zh:'—',en:'—'}, gate:'entry', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Qur5wZZujiII6SkONaIjBWF2pva', dl:{zh:'54 个页面逐页检查外屏、内屏、开合三种状态',en:'All 54 screens checked across cover, inner and fold states'} },
+      { t:{zh:'App 包体积持续优化',en:'Download size, continuous'}, w:'贾宾 / 李永琪', p:'—', d:{zh:'—',en:'—'}, gate:'entry', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'每个生产版本有可追溯的体积检测记录',en:'A traceable size record for every production build'} },
+      { t:{zh:'App 登录可靠性',en:'App sign-in reliability'}, w:'王宁宁 / 杨金鹏', p:'—', d:{zh:'—',en:'—'}, gate:'entry', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'D1 注册率 65%，按平台与国家拆解 Top 3',en:'65% D1 registration; top 3 issues by platform and country'} },
+      { t:{zh:'崩溃与功能失效整治',en:'Crash and feature-failure clean-up'}, w:'燕航 / 沈延涛', p:'—', d:{zh:'—',en:'—'}, gate:'hold', doc:'https://dino-health-review-20261019.yanhang291.chatgpt.site/#3', dl:{zh:'崩溃用户率 ≤ 1‰，首批功能失效给技术失败率',en:'Crash-affected users ≤ 1‰; a failure rate for the first batch'} },
+      { t:{zh:'崩溃：微软 SDK 修复版本回归',en:'Crash: Microsoft SDK regression'}, w:'付玉佳', p:'—', d:{zh:'下个版本',en:'next build'}, gate:'hold', dl:{zh:'带 10 月后修复版的 TTS / ASR SDK 回归',en:'Regress with the post-October TTS / ASR SDK fixes'} },
+      { t:{zh:'网络问题收集与 HTTPDNS',en:'Network instrumentation and HTTPDNS'}, w:'李晓鹏 / 郭武鑫', p:'—', d:{zh:'—',en:'—'}, gate:'hold', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'按解析、连接、服务端、业务四类拆开',en:'Split into DNS, connect, server and business errors'} },
+      { t:{zh:'支付权益可靠性',en:'Payment and entitlement reliability'}, w:'郭浦然 / 覃熠珲', p:'—', d:{zh:'—',en:'—'}, gate:'pay', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'定订阅技术成功率标准并作为基线',en:'Set the subscription technical success baseline'} },
+      { t:{zh:'prompt 评测体系',en:'Prompt evaluation system'}, w:'付志强', p:'—', d:{zh:'—',en:'—'}, kind:'bet', gate:'bet', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'一个 lesson 全模板跑通，评测维度与产品对齐',en:'One lesson end to end; evaluation dimensions agreed with product'} },
+      { t:{zh:'CMS-Agent 2.0 自定义生课',en:'CMS-Agent 2.0 course assembly'}, w:'祈建泉', p:'—', d:{zh:'—',en:'—'}, kind:'bet', gate:'bet', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'跑通自定义课程生成与灵活组课',en:'Custom course generation and flexible assembly working'} },
+      { t:{zh:'动画片生成流水线',en:'Animation generation pipeline'}, w:'刘福成', p:'—', d:{zh:'—',en:'—'}, kind:'bet', gate:'bet', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'验收是「一套让教研满意的动画片」，不是产能',en:'Acceptance is one set the curriculum team is happy with, not volume'} },
+      { t:{zh:'游戏平台',en:'Game platform'}, w:'韩东泽', p:'—', d:{zh:'—',en:'—'}, kind:'bet', gate:'bet', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'平台搭好，7 个已生产的小游戏迁进来',en:'Platform standing, the seven existing mini-games migrated'} },
+      { t:{zh:'CRM multi-agent 重构',en:'CRM multi-agent rebuild'}, w:'李辰凯', p:'—', d:{zh:'milestone 1',en:'milestone 1'}, kind:'bet', gate:'bet', dl:{zh:'开发、部署、验收由 agent 完成，并反洗知识库',en:'Build, deploy and accept by agents; knowledge written back'} },
+      { t:{zh:'自研 TTS 分流',en:'In-house TTS split'}, w:'董鹏', p:'—', d:{zh:'依赖文本规范',en:'blocked on copy spec'}, kind:'bet', gate:'bet', dl:{zh:'第一节课 50/50 分流，看第一印象差异',en:'50/50 split on the first lesson; measure first impressions'} },
+      { t:{zh:'课中指标平台六个指标',en:'In-class metrics platform, six metrics'}, w:'赵腾', p:'—', d:{zh:'11 月中旬',en:'mid-Nov'}, gate:'base', doc:'http://fc-singapore.lionabc.com/dinoai-holmes/stats/query', dl:{zh:'指标定义补齐，异常指标排查 agent',en:'Metrics defined; an agent that chases abnormal ones'} },
+      { t:{zh:'pre 环境搭建',en:'Pre-production environment'}, w:'冯强', p:'—', d:{zh:'—',en:'—'}, gate:'base', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'模拟生产，提升测试覆盖度',en:'Production-like, to raise test coverage'} },
+      { t:{zh:'全链路追踪建设',en:'End-to-end trace IDs'}, w:'文志超', p:'—', d:{zh:'—',en:'—'}, gate:'base', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'先用 trace_id 串起客户端、网关、服务端',en:'Start with trace IDs across client, gateway and server'} },
+      { t:{zh:'课中流程自动化验证',en:'In-class flow automation'}, w:'桂启剑', p:'—', d:{zh:'—',en:'—'}, gate:'base', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'脚本模拟真实上课，循环跑稳定性',en:'Scripts that loop a real lesson to catch instability'} },
+      { t:{zh:'主流程接口回归',en:'Core API regression'}, w:'李芬蕾', p:'—', d:{zh:'—',en:'—'}, gate:'base', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'两条链可重复跑通，每步有断言，CI 通知',en:'Two chains repeatable, assertions at each step, CI notified'} },
+      { t:{zh:'测试业务线隔离',en:'Test business-line isolation'}, w:'文志超', p:'—', d:{zh:'—',en:'—'}, gate:'base', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'线上回归不污染业务数据',en:'Online regression without touching production data'} },
+      { t:{zh:'测试设备借用平台',en:'Test device checkout'}, w:'许效维', p:'—', d:{zh:'—',en:'—'}, gate:'base', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'机型、系统、在库状态、当前持有人可筛',en:'Filter by model, OS, availability and holder'} },
+      { t:{zh:'CRM / LP 自动化',en:'CRM / LP automation'}, w:'张依', p:'—', d:{zh:'已标先不做',en:'parked'}, gate:'base', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'新增业务线也能模块级看结果',en:'Per-module results even for a new business line'} },
+      { t:{zh:'产研知识库搭建',en:'Engineering knowledge base'}, w:'董鹏', p:'—', d:{zh:'—',en:'—'}, gate:'base', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/ZOCMwIk7wim45tk08zqjm9MapPf', dl:{zh:'现有文档规整一遍，写规范并推广',en:'Tidy the existing docs, write the rules, push adoption'} },
+      { t:{zh:'iOS 26 适配排期',en:'iOS 26 adaptation schedule'}, w:'付玉佳', p:'—', d:{zh:'年内',en:'this year'}, gate:'base', dl:{zh:'确认强制适配时点，倒排真机与发版',en:'Confirm the forced deadline; back-plan devices and releases'} }
+    ]}
+];
+
+const GATE = {
+  entry:{ zh:['DTTE','下载到首课开课'], en:['DTTE','Download to trial entry'] },
+  hold:{ zh:['TETF','首课开课到完课'], en:['TETF','Trial entry to finish'] },
+  pay:{ zh:['FTP','完课到付费'], en:['FTP','Finish to pay'] },
+  voice:{ zh:['说清楚','开口之后的语音与反馈'], en:['Getting it right','Speech and feedback, once they speak'] },
+  bet:{ zh:['探索','还没有答案的那几件事'], en:['Bets','The things without an answer yet'] },
+  base:{ zh:['技术基建','不直接对漏斗，但是非常有必要做'], en:['Infrastructure','Not on the funnel, but essential'] }
+};
+const GATE_ORDER = ['entry','hold','pay','voice','bet','base'];
+
+/* 英文页的人名：中文 + 拼音/英文名 */
+const NAME = {
+  '董鹏':'Dong Peng','付玉佳':'Yujia','李辰凯':'Li Chenkai','张帝':'Zhang Di','李双':'Li Shuang',
+  '夏炎':'Xia Yan','冯超':'Feng Chao','刘思远':'Liu Siyuan','孔丽莉':'Heidi','毕燕晨':'Rosa',
+  '刘亚平':'Liu Yaping','李政':'Li Zheng','鲁新建':'Lu Xinjian','郭浦然':'Guo Puran','覃熠珲':'Qin Yihui',
+  '罗伟':'Luo Wei','赵腾':'Zhao Teng','李龙飞':'Li Longfei','翟亚南':'Zhai Yanan','沈延涛':'Shen Yantao',
+  '燕航':'Yan Hang','李晓鹏':'Li Xiaopeng','郭武鑫':'Guo Wuxin','张帅':'Zhang Shuai','文志超':'Wen Zhichao',
+  '桂启剑':'Gui Qijian','李芬蕾':'Li Fenlei','许效维':'Xu Xiaowei','张依':'Zhang Yi','冯强':'Feng Qiang',
+  '魏博源':'Wei Boyuan','王宁宁':'Wang Ningning','杨金鹏':'Yang Jinpeng','贾宾':'Jia Bin','李永祺':'Li Yongqi',
+  '韩东泽':'Han Dongze','付志强':'Fu Zhiqiang','祈建泉':'Qi Jianquan','刘福成':'Liu Fucheng','刘阳阳':'Liu Yangyang'
+};
+function who(w){
+  if(LANG !== 'en') return w;
+  return w.split('/').map(n => {
+    const k = n.trim();
+    return NAME[k] ? k + ' ' + NAME[k] : k;
+  }).join(' / ');
+}
+
+const HALF = {
+  health:{ zh:['技术健康度','稳定性 · 交付质量 · 可观测性'], en:['Technical health','Stability, delivery quality, observability'] },
+  bet:{ zh:['技术探索','还没有答案的那几件事'], en:['Exploration','The things without an answer yet'] }
+};
+
+const I18N = {
+  zh: {
+    docTitle:'Dino AI · 技术状态',
+    brand:'Dino AI · Tech',
+    nav:[['#top','总览'],['#weeks','三周迭代']],
+    kicker:'Dino AI · Tech State',
+    h1:'技术<em>状态</em>',
+    lede:'W43 到 W45+，<b>{total} 项</b>在台账上：本周 {a} 项、下周 {b} 项、之后 {c} 项。每周分两块看——技术健康度在补什么，技术探索在赌什么。日期取台账原文，已完成的打勾。',
+    meta:[['周期','W43 – W45+'],['数据截止','2026-10-22'],['整理','冯超'],['来源','技术专项会 · 10 月技术专项']],
+    count:'项',
+    live:'进行中',
+    fbTitle:'反馈',
+    fbText:'看完觉得某一项排错了、漏了、或者日期不对，直接说。',
+    logTitle:'变更记录',
+    footBot:['Dino AI · Tech State · v2','本地单文件，无构建、无依赖','结构与产品里程碑页一致','周更，只改脚本里的 WK']
+  },
+  en: {
+    docTitle:'Dino AI · Tech State',
+    brand:'Dino AI · Tech',
+    nav:[['#top','Overview'],['#weeks','Three weeks']],
+    kicker:'Dino AI · Tech State',
+    h1:'Tech <em>State</em>',
+    lede:'W43 through W45+, <b>{total} items</b> on the ledger: {a} this week, {b} next week, {c} beyond. Each week is read in two halves — what health work is closing, and what exploration is betting on. Dates are quoted as written; finished work is ticked.',
+    meta:[['Cycle','W43 – W45+'],['Data as of','2026-10-22'],['Compiled by','Feng Chao'],['Sources','Tech review · Oct program']],
+    count:'items',
+    live:'LIVE NOW',
+    fbTitle:'Feedback',
+    fbText:'If something is mis-sequenced, missing, or dated wrong, say so directly.',
+    logTitle:'Change log',
+    footBot:['Dino AI · Tech State · v2','Single local file, no build, no dependencies','Same structure as the product roadmap page','Weekly; edit the WK array only']
+  }
+};
+
+/* ---------------- render ---------------- */
+
+const $ = (s, r=document) => r.querySelector(s);
+let LANG = localStorage.getItem('dino-tech-lang') || 'zh';
+
+function counts(items){
+  const c = {P0:0,P1:0,P2:0,un:0};
+  items.forEach(i => { if(c[i.p] !== undefined) c[i.p]++; else c.un++; });
+  return { c, done: items.filter(i => i.done).length };
+}
+
+function rail(){
+  $('#week-rail').innerHTML = WK.map(w => `
+    <a href="${w.href}" data-target="${w.href.slice(1)}" ${w.core?'data-current':''}>
+      <b>${w.id}</b><time>${w.rail[LANG]}</time>
+    </a>`).join('');
+}
+
+function item(i){
+  const title = i.doc
+    ? `<a class="it-t" href="${i.doc}" target="_blank" rel="noopener">${i.t[LANG]}<span class="lk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8"/></svg></span></a>`
+    : `<span class="it-t">${i.t[LANG]}</span>`;
+  return `
+  <li class="it ${i.done?'done':''}${i.wip?' wip':''}${i.long?' long':''}">
+    <div class="it-l1">
+      ${title}
+      ${i.secret ? `<span class="secret">${i.secret[LANG]}</span>` : ''}
+      ${i.p && i.p !== '—' ? `<span class="p-badge ${i.p.toLowerCase()}">${i.p}</span>` : ''}
+      <span class="it-meta"><span class="it-w">${who(i.w)}</span>${i.d[LANG] && i.d[LANG] !== '—' ? `<span class="it-d">${i.d[LANG]}</span>` : ''}</span>
+    </div>
+    <div class="it-l2">${i.dl[LANG]}</div>
+    ${i.access ? `<div class="it-access">${i.access[LANG]}</div>` : ''}
+    ${i.kind==='bet' ? `<div class="it-note">${LANG==='zh'
+        ? '需要 ' + (i.dur ? i.dur.zh : '2 周+') + ' 的时间去探索、试错'
+        : 'Needs ' + (i.dur ? i.dur.en : '2 weeks+') + ' to explore and iterate'}</div>` : ''}
+  </li>`;
+}
+
+function nodes(){
+  const T = I18N[LANG];
+  $('#board').innerHTML = WK.map(w => {
+    const { c, done } = counts(w.items);
+    const prio = [
+      c.P0 ? `P0 ${c.P0} ${LANG==='zh'?'项':''}`.trim() : '',
+      c.P1 ? `P1 ${c.P1} ${LANG==='zh'?'项':''}`.trim() : '',
+      c.P2 ? `P2 ${c.P2} ${LANG==='zh'?'项':''}`.trim() : ''
+    ].filter(Boolean).join(LANG==='zh' ? '、' : ', ');
+
+    const story = w.story[LANG]
+      .replace('{n}', w.items.length)
+      .replace('{prio}', prio)
+      .replace('{p0}', c.P0).replace('{p1}', c.P1).replace('{p2}', c.P2)
+      .replace('{un}', c.un).replace('{done}', done);
+
+    /* 当前周：没标完成的，一律算进行中 */
+    const items = w.items.map(i => (w.core && !i.done) ? { ...i, wip: true } : i);
+    const health = items.filter(i => i.kind !== 'bet');
+    const bets = items.filter(i => i.kind === 'bet');
+
+    const healthGroups = GATE_ORDER.filter(g => health.some(i => i.gate === g)).map(g => {
+      const list = health.filter(i => i.gate === g);
+      return `
+      <div class="grp">
+        <div class="grp-head"><span class="g-code">${GATE[g][LANG][0]}</span><span class="g-gloss">${GATE[g][LANG][1]}</span><span class="n">${list.length}</span><span class="ln"></span></div>
+        <ul class="items">${list.map(item).join('')}</ul>
+      </div>`;
+    }).join('');
+
+    const halve = (kind, body) => `
+      <div class="half ${kind}">
+        <div class="half-head">${HALF[kind][LANG][0]}<span class="half-n">${kind === 'health' ? health.length : bets.length} ${T.count}</span></div>
+        <div class="half-sub">${HALF[kind][LANG][1]}</div>
+        ${body}
+      </div>`;
+
+    const healthBlock = health.length ? halve('health', healthGroups) : '';
+    const betBlock = bets.length ? halve('bet', `<ul class="items">${bets.map(item).join('')}</ul>`) : '';
+
+    return `
+    <section class="node reveal ${w.core?'core':''}" id="${w.href.slice(1)}">
+      <div class="node-marker">
+        <div class="dot"></div>
+        <div class="node-date">${w.id}</div>
+        <div class="node-sub">${w.date[LANG]}<br>${w.range[LANG]}${w.days?`<br>${w.days[LANG]}`:''}</div>
+      </div>
+      <div class="node-body">
+        <h2 class="node-title">${w.title[LANG]}${w.live?`<span class="tag live">${T.live}</span>`:''}<span class="tag">${w.items.length} ${T.count}</span></h2>
+        <div class="story">${story}</div>
+        ${healthBlock}
+        ${betBlock}
+      </div>
+    </section>`;
+  }).join('');
+}
+
+function render(){
+  const T = I18N[LANG];
+  document.documentElement.lang = LANG === 'zh' ? 'zh-CN' : 'en';
+  document.title = T.docTitle;
+
+  const n = WK.map(w => w.items.length);
+  $('#brand').textContent = T.brand;
+  $('#kicker').textContent = T.kicker;
+  $('#h1').innerHTML = T.h1;
+  $('#lede').innerHTML = T.lede
+    .replace('{total}', n.reduce((a,b)=>a+b,0))
+    .replace('{a}', n[0]).replace('{b}', n[1]).replace('{c}', n[2]);
+  $('#meta').innerHTML = T.meta
+    .map(([k,v],i) => `<span>${k} <b class="${i===1?'cut':''}">${v}</b></span>`).join('');
+  $('#nav').innerHTML = T.nav.map(([h,l]) => `<a href="${h}">${l}</a>`).join('');
+
+  rail();
+  nodes();
+  watchNav();
+  reveal();
+
+  $('#fb-title').textContent = T.fbTitle;
+  $('#fb-text').textContent = T.fbText;
+  $('#log-title').textContent = T.logTitle;
+  $('#log-list').innerHTML = `
+    <li><time>2026-10-22</time>${LANG==='zh'?'v2 结构对齐产品里程碑页：只保留页头、周轴与三个时间线节点':'v2 aligned with the product roadmap: header, week rail and three timeline nodes only'}</li>
+    <li><time>2026-10-22</time>${LANG==='zh'?'v1 三周看板：27 项带日期交付、27 项在跑':'v1 three-week board: 27 dated items, 27 running'}</li>`;
+  $('#foot-bot').innerHTML = T.footBot.map(t => `<span>${t}</span>`).join('');
+
+  document.querySelectorAll('.lang button').forEach(b => {
+    b.classList.toggle('on', b.dataset.lang === LANG);
+  });
+  localStorage.setItem('dino-tech-lang', LANG);
+}
+
+/* sticky rail: highlight the week crossing the reading line */
+function watchNav(){
+  const links = [...document.querySelectorAll('#week-rail a')];
+  const secs = links.map(a => document.getElementById(a.dataset.target));
+  function update(){
+    const line = 176; /* 吸顶条下沿：顶栏 54 + 周轴 ~72 + 余量 */
+    let current = 0;
+    secs.forEach((s, i) => { if(s && s.getBoundingClientRect().top <= line) current = i; });
+    links.forEach((a, i) => a.classList.toggle('on', i === current));
+  }
+  window.addEventListener('scroll', update, { passive:true });
+  window.addEventListener('resize', update);
+  if('IntersectionObserver' in window){
+    /* the band around the reading line triggers a recompute on every crossing */
+    const io = new IntersectionObserver(() => update(), { rootMargin:'-24% 0px -60% 0px', threshold:[0, 0.01, 0.5] });
+    secs.forEach(s => s && io.observe(s));
+  }
+  update();
+}
+
+/* reveal nodes on scroll */
+function reveal(){
+  const els = [...document.querySelectorAll('.reveal')];
+  if(!('IntersectionObserver' in window)){ els.forEach(e => e.classList.add('in')); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin:'0px 0px -8% 0px', threshold:0.06 });
+  els.forEach(e => io.observe(e));
+}
+
+document.querySelectorAll('.lang button').forEach(b => {
+  b.addEventListener('click', () => {
+    if(b.dataset.lang === LANG) return;
+    LANG = b.dataset.lang;
+    render();
+  });
+});
+
+render();
+</script>
+</body>
+</html>
