@@ -373,9 +373,9 @@ a.it-t:hover .lk{background:#14402c;transform:translateY(-1px)}
    ============================================================ */
 
 const WK = [
-  { id:'W43', href:'#w43', core:true, live:true, date:{zh:'本周',en:'This week'}, range:{zh:'10/20 – 10/24',en:'Oct 20 – 24'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
+  { id:'W43', href:'#w43', date:{zh:'上周',en:'Last week'}, range:{zh:'10/20 – 10/24',en:'Oct 20 – 24'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
     rail:{zh:'10/20 – 10/24',en:'Oct 20 – 24'},
-    title:{zh:'本周交付',en:'This week'},
+    title:{zh:'上周交付',en:'Last week'},
     story:{zh:'<span class="lab">技术专项会 · 10-21 版台账 · {n} 项</span>{prio}，{done} 项已经落地，其中课中指标接进看板、AI teacher 从 120MB 砍到 80MB、支付链路补上埋点。剩下的都在跑。这一周只做一件事——把「感觉还行」换成「能看见数」。',
            en:'<span class="lab">Tech review · Oct 21 ledger · {n} items</span>{prio}; {done} already landed, including in-class metrics on a dashboard, AI teacher assets cut from 120MB to 80MB, and payment instrumentation. The rest is in flight. One job this week — turn “feels fine” into a number.'},
     items:[
@@ -393,7 +393,7 @@ const WK = [
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Xc1zw3nHzihoIdkxaTEjDAXjpie', dl:{zh:'支付方式 × 厂商矩阵下钻，技术侧按 99% 考核',en:'Method × provider drill-down; 99% internal SLA'} },
       { t:{zh:'raft.build 搭 AI 研发团队',en:'An AI engineering team on raft.build'}, w:'李辰凯 / 冯超', p:'P1', d:{zh:'2 周+',en:'2 weeks+'}, kind:'bet', gate:'bet', wip:true, long:true,
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Yd7swayt9iL7HQkvi5djRi0LpTC',
-        dl:{zh:'Landing Page 开发基本跑通；「数据标注平台升级」也在用 raft.build 试，估计也能搞定；CRM 的 multi-agent 重构并入这条，同一个赌注 —— <mark>有希望极大程度提升研发效能</mark>',en:'The landing page basically works; the annotation-platform upgrade is trying raft.build too and should land; the CRM multi-agent rebuild is folded into this one — same bet. <mark>Could lift engineering throughput substantially.</mark>'} },
+        dl:{zh:'已经在用 raft.build 开发「外包人员管理、数据标注平台」；Landing Page 开发基本跑通；CRM 的 multi-agent 重构也并入这条 —— <mark>有希望极大程度提升研发效能</mark>',en:'Contractor management and the annotation platform are already being built on raft.build; the landing page basically works; the CRM multi-agent rebuild is folded in too — <mark>could lift engineering throughput substantially</mark>'} },
       { t:{zh:'云测',en:'Cloud testing'}, w:'许效维', p:'P1', d:{zh:'2 周+',en:'2 weeks+'}, kind:'bet', gate:'bet', wip:true, long:true,
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/OxREwjvWuiCDSek92ZGjp7ZBpyc',
         dl:{zh:'<mark>有希望极大程度提升测试效能</mark>',en:'<mark>could lift QA throughput substantially</mark>'} },
@@ -402,69 +402,78 @@ const WK = [
         dl:{zh:'数据查询、数据地图、血缘分析、智能问数四条已能用；并不完善；<b>链接里面有账号密码</b>',en:'Queries, a data map, lineage and natural-language questions already work; not finished; <b>the doc has the account and password</b>'} },
       { t:{zh:'prompt 评测体系',en:'Prompt evaluation system'}, w:'付志强', p:'—', d:{zh:'3 周+',en:'3 weeks+'}, kind:'bet', gate:'bet', wip:true, long:true, dur:{zh:'3 周+',en:'3 weeks+'},
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/JMFwwEhg4iaORak1UmNjCRo2pOc', dl:{zh:'一个 lesson 全模板跑通，评测维度与产品对齐；<mark>有希望把 prompt 迭代从手感变成可比较的分数</mark>',en:'One lesson end to end; evaluation dimensions agreed with product — <mark>prompt iteration moves from gut feel to comparable scores</mark>'} },
-      { t:{zh:'listener demo 测通',en:'Listener demo validated'}, w:'董鹏 / 刘思远', p:'P1', d:{zh:'本周',en:'This week'}, kind:'bet', gate:'bet', wip:true,
-        dl:{zh:'内部自测效果结论 + 接不接的判断',en:'Internal result and a go / no-go call'} },
-      { t:{zh:'双路 ASR 方案评估',en:'Dual-ASR architecture review'}, w:'董鹏', p:'P1', d:{zh:'本周',en:'This week'}, kind:'bet', gate:'bet', wip:true,
-        dl:{zh:'两路冲突以谁为准、时间戳怎么对齐、成本是否成立',en:'Which path wins on conflict, how timestamps align, whether the cost works'} },
-      { t:{zh:'动画片生成流水线',en:'Animation generation pipeline'}, w:'刘福成', p:'—', d:{zh:'本周',en:'This week'}, kind:'bet', gate:'bet',
+      { t:{zh:'listener demo 测通',en:'Listener demo validated'}, w:'董鹏 / 刘思远', p:'P1', d:{zh:'已完成',en:'done'}, kind:'bet', gate:'bet', done:true,
+        dl:{zh:'自测通了；距离线上接入还要继续训练模型、调优效果',en:'Self-test passed; online integration still needs model training and tuning'} },
+      { t:{zh:'动画片生成流水线',en:'Animation generation pipeline'}, w:'刘福成', p:'—', d:{zh:'已完成',en:'done'}, kind:'bet', gate:'bet', done:true,
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/IQhfwwh7UiO0vLk1P4KjEqBFplh', dl:{zh:'验收是「一套让教研满意的动画片」，不是产能',en:'Acceptance is one set the curriculum team is happy with, not volume'} },
 
 
-      { t:{zh:'课中指标平台',en:'In-class metrics platform'}, w:'赵腾', p:'P0', d:{zh:'本周',en:'This week'}, gate:'base', wip:true,
+      { t:{zh:'课中指标平台',en:'In-class metrics platform'}, w:'赵腾', p:'P0', d:{zh:'本周',en:'This week'}, gate:'base', done:true,
         doc:'http://fc-singapore.lionabc.com/dinoai-holmes/stats/query', dl:{zh:'覆盖 11 位产品、教研、业务同学；不需要密码即可查看',en:'Reach 11 people across product, curriculum and business; no password needed'} },
-      { t:{zh:'课中巡检与告警',en:'In-class inspection and alerting'}, w:'翟亚南', p:'P1', d:{zh:'2 周',en:'2 weeks'}, gate:'hold',
+      { t:{zh:'课中巡检与告警',en:'In-class inspection and alerting'}, w:'翟亚南', p:'P1', d:{zh:'2 周',en:'2 weeks'}, gate:'hold', wip:true,
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/OXH1wdoC8iCQbGkwqRijnnS7ppb', dl:{zh:'并入课中指标平台，教研产品研发拉进巡检群；<b>链接里面有账号密码</b>',en:'Folded into the in-class metrics platform; curriculum, product and eng in one room; <b>the doc has the account and password</b>'} },
-      { t:{zh:'Global 数据迁新加坡',en:'Global data move to Singapore'}, w:'董鹏', p:'P0', d:{zh:'预计 2 周',en:'est. 2 weeks'}, gate:'base',
+      { t:{zh:'Global 数据迁新加坡',en:'Global data move to Singapore'}, w:'董鹏', p:'P0', d:{zh:'进行中',en:'in progress'}, gate:'base', wip:true,
         secret:{zh:'🙈 top secret · 请当做没看见',en:'🙈 top secret · pretend you did not see this'},
-        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/OMtVwd2KSibgcTkiWWfjX6fVpTw', dl:{zh:'按区域合规要求落库；原计划 1 个月迁完，现在看可能 2 周左右，取决于网速',en:'Land data per regional compliance; originally a month, now looks like two weeks if the network holds'} },
-      { t:{zh:'数据标注平台升级',en:'Annotation platform upgrade'}, w:'李辰凯 / 刘思远', p:'P1', d:{zh:'2 周+',en:'2 weeks+'}, gate:'base',
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/OMtVwd2KSibgcTkiWWfjX6fVpTw', dl:{zh:'按区域合规要求落库；原计划 1 个月迁完，现在看可能 2 周左右，但网速有所下降，时间会往后拖',en:'Land data per regional compliance; originally a month, now looks like two weeks — but the network has slowed and it will slip'} },
+      { t:{zh:'数据标注平台升级',en:'Annotation platform upgrade'}, w:'李辰凯 / 刘思远', p:'P1', d:{zh:'2 周+',en:'2 weeks+'}, gate:'base', wip:true,
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/W7DUwmG9xi0MWjkzV25jeReZpMh', dl:{zh:'面向更多众包标注人员，把产能从内部扩到外部',en:'Open annotation to far more crowd workers, not just the internal team'} }
     ]},
-  { id:'W44', href:'#w44', date:{zh:'下周',en:'Next week'}, range:{zh:'10/27 – 10/31',en:'Oct 27 – 31'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
+  { id:'W44', href:'#w44', core:true, live:true, date:{zh:'本周',en:'This week'}, range:{zh:'10/27 – 10/31',en:'Oct 27 – 31'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
     rail:{zh:'10/27 – 10/31',en:'Oct 27 – 31'},
-    title:{zh:'下周交付',en:'Next week'},
-    story:{zh:'<span class="lab">承接 10-21 台账 · {n} 项</span>{prio}，另有 {un} 项未定级。四个死线挤在四天里：包体、进课速度、短信漏斗、教室性能，10-28 到 10-31。要么收口，要么承认这个月做不完。',
-           en:'<span class="lab">Carried from the Oct 21 ledger · {n} items</span>{prio}, plus {un} unranked. Four deadlines inside four days: package size, entry speed, the SMS funnel, classroom performance — Oct 28 to 31. Either it closes, or we admit the month does not.'},
+    title:{zh:'本周交付',en:'This week'},
+    story:{zh:'<span class="lab">承接 10-21 台账 · {n} 项</span>{prio}，另有 {un} 项未定级。七个死线赶在周五下班前收口：包体、进课、短信、机型、告警、监控、麦克风；教室性能还在联调。',
+           en:'<span class="lab">Carried from the Oct 21 ledger · {n} items</span>{prio}, plus {un} unranked. Seven deadlines closed before Friday EOD — package size, entry, SMS, device tiers, alerts, monitoring, microphone permission; classroom performance is still in integration.'},
     items:[
-      { t:{zh:'App 包体缩减',en:'Shrink the app package'}, w:'贾宾', p:'P0', d:{zh:'10-30',en:'Oct 30'}, gate:'entry',
+      { t:{zh:'App 包体缩减',en:'Shrink the app package'}, w:'贾宾', p:'P0', d:{zh:'周五下班前',en:'by Fri EOD'}, gate:'entry', done:true,
         dl:{zh:'包体能缩到多少、给教学必要资源留多少空间，月末收敛结论',en:'How small the package can get and how much room teaching-critical assets need; converged by month end'} },
-      { t:{zh:'进课速度提升',en:'Faster class entry'}, w:'张帝', p:'P0', d:{zh:'10-30',en:'Oct 30'}, gate:'entry',
+      { t:{zh:'进课速度提升',en:'Faster class entry'}, w:'张帝', p:'P0', d:{zh:'周五下班前',en:'by Fri EOD'}, gate:'entry', done:true,
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/SoK4wht6siMMCwkW1ECjVjI0pFc', dl:{zh:'进课成功率与进课耗时的同口径指标，接进常态化看板',en:'Entry success and entry time on one definition, wired into the standing dashboard'} },
-      { t:{zh:'短信漏斗',en:'SMS funnel'}, w:'李辰凯 / 刘阳阳', p:'P0', d:{zh:'10-28',en:'Oct 28'}, gate:'entry',
+      { t:{zh:'短信漏斗',en:'SMS funnel'}, w:'李辰凯 / 刘阳阳', p:'P0', d:{zh:'周五下班前',en:'by Fri EOD'}, gate:'entry', done:true,
         doc:'https://floral-bush-1417.lauyoung0207.workers.dev/reports/', dl:{zh:'发码、送达、填写、校验逐层折损，下周过会更新',en:'Wastage at each step: send, deliver, enter, verify — updated at the next review'} },
-      { t:{zh:'机型 × 系统 × 课程表现分层',en:'Device × OS × lesson performance tiers'}, w:'张帅', p:'P1', d:{zh:'10-31',en:'Oct 31'}, gate:'hold',
+      { t:{zh:'机型 × 系统 × 课程表现分层',en:'Device × OS × lesson performance tiers'}, w:'张帅', p:'P1', d:{zh:'周五下班前',en:'by Fri EOD'}, gate:'hold', done:true,
         dl:{zh:'分档机型表现差异，含已埋点的 CPU 与温度',en:'Difference across device tiers, including CPU and temperature already instrumented'} },
-      { t:{zh:'告警降噪与统一收口',en:'Alert noise reduction and ownership'}, w:'付玉佳 / 沈延涛 / 燕航', p:'P1', d:{zh:'下周',en:'Next week'}, gate:'hold',
+      { t:{zh:'告警降噪与统一收口',en:'Alert noise reduction and ownership'}, w:'付玉佳 / 沈延涛 / 燕航', p:'P1', d:{zh:'周五下班前',en:'by Fri EOD'}, gate:'hold', done:true,
         dl:{zh:'告警条数明显下降且异常不漏',en:'Far fewer alerts, no missed anomalies'} },
       { t:{zh:'教室性能：客户端接入联调',en:'Classroom performance: client integration'}, w:'刘亚平 / 李政 / 鲁新建', p:'P0', d:{zh:'10-30 提测准备',en:'Test-ready Oct 30'}, gate:'hold',
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Mk7LwdhuAiXDzekbsWJj1IlKpo8', dl:{zh:'学生视频 Native 接入，保留 H5 与回退路径',en:'Native student video, with H5 and rollback kept'} },
-      { t:{zh:'麦克风授权率与卡点归因',en:'Microphone permission rate and drop-off'}, w:'董鹏 / 毕燕晨', p:'P1', d:{zh:'下周',en:'Next week'}, gate:'voice',
+      { t:{zh:'麦克风授权率与卡点归因',en:'Microphone permission rate and drop-off'}, w:'董鹏 / 毕燕晨', p:'P1', d:{zh:'周五下班前',en:'by Fri EOD'}, gate:'voice', done:true,
         dl:{zh:'授权前移方案 + 占进课流失 6–8% 的归因',en:'Moving the prompt earlier, plus the 6–8% entry-loss attribution'} },
-      { t:{zh:'监控与故障发现',en:'Monitoring and fault detection'}, w:'李晓鹏 / 郭武鑫', p:'P1', d:{zh:'下周',en:'Next week'}, gate:'hold',
+      { t:{zh:'监控与故障发现',en:'Monitoring and fault detection'}, w:'李晓鹏 / 郭武鑫', p:'P1', d:{zh:'周五下班前',en:'by Fri EOD'}, gate:'hold', done:true,
         doc:'https://dino-health-review-20261019.yanhang291.chatgpt.site/#3', dl:{zh:'紧急异常规则 + 半小时轮询 + 故障报告',en:'Urgent-anomaly rules, half-hourly polling, fault reports'} },
       { t:{zh:'口型：音频直驱接入 web',en:'Lip-sync: direct audio drive on web'}, w:'李龙飞', p:'—', d:{zh:'10 月底',en:'End of Oct'}, kind:'bet', gate:'voice',
         doc:'https://docs.google.com/presentation/d/1NfXyhAXyYYa7HyZiMpV70TRtpE1qs9yZLYluNFGVkB4/edit?slide=id.h7f13d154489f488d_0_70#slide=id.h7f13d154489f488d_0_70', dl:{zh:'web 端接入音频直驱，10 月底是验收点',en:'Web hooks up direct audio drive; end of October is the gate'} },
-      { t:{zh:'小语种与方言 listener 口径',en:'Listener scope for small languages and dialects'}, w:'孔丽莉 / 毕燕晨', p:'P1', d:{zh:'下周',en:'Next week'}, kind:'bet', gate:'bet',
-        dl:{zh:'场景、语料来源、标注分工、语料量目标',en:'Scenarios, corpus sources, annotation split, volume target'} },
+      { t:{zh:'训练 listener，需要 4 个小语种数据准备',en:'Train the listener — four small-language datasets'}, w:'刘思远', p:'P1', d:{zh:'W44 起 · W45 完成',en:'from W44 · done in W45'}, kind:'bet', gate:'bet', wip:true,
+        dl:{zh:'四个小语种的语料来源、标注分工与语料量目标；本周启动，下周完成',en:'Corpus sources, annotation split and volume targets for four small languages; starts this week, done next'} },
       { t:{zh:'raft.build 搭 AI 研发团队',en:'An AI engineering team on raft.build'}, w:'李辰凯 / 冯超', p:'P1', d:{zh:'承接 W43',en:'from W43'}, kind:'bet', gate:'bet', wip:true, long:true,
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Yd7swayt9iL7HQkvi5djRi0LpTC',
-        dl:{zh:'从 Landing Page 扩到两个新试验：数据标注平台升级、CRM multi-agent 重构，<mark>有希望极大程度提升研发效能</mark>',en:'From the landing page to two more experiments, the annotation-platform upgrade and the CRM multi-agent rebuild — <mark>could lift engineering throughput substantially</mark>'} },
+        dl:{zh:'正在用 raft.build 开发「外包人员管理、数据标注平台」，11/03 上线；CRM multi-agent 重构也在这条里 —— <mark>有希望极大程度提升研发效能</mark>',en:'Contractor management and the annotation platform are being built on raft.build, launching Nov 3; the CRM multi-agent rebuild is in here too — <mark>could lift engineering throughput substantially</mark>'} },
       { t:{zh:'云测',en:'Cloud testing'}, w:'许效维', p:'P1', d:{zh:'承接 W43',en:'from W43'}, kind:'bet', gate:'bet', wip:true, long:true,
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/OxREwjvWuiCDSek92ZGjp7ZBpyc',
         dl:{zh:'继续验证，<mark>有希望极大程度提升测试效能</mark>',en:'Still validating — <mark>could lift QA throughput substantially</mark>'} },
       { t:{zh:'Dino BI',en:'Dino BI'}, w:'郝飞飞', p:'P1', d:{zh:'承接 W43',en:'from W43'}, kind:'bet', gate:'bet', wip:true, long:true, dur:{zh:'3 周+',en:'3 weeks+'},
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/KvLawV49giLoVFkNQmljeE4cpFf',
         dl:{zh:'继续打磨，<b>链接里面有账号密码</b>',en:'Continuing; <b>the doc has the account and password</b>'} },
       { t:{zh:'prompt 评测体系',en:'Prompt evaluation system'}, w:'付志强', p:'—', d:{zh:'承接 W43',en:'from W43'}, kind:'bet', gate:'bet', wip:true, long:true, dur:{zh:'3 周+',en:'3 weeks+'},
-        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/JMFwwEhg4iaORak1UmNjCRo2pOc', dl:{zh:'从跑通到覆盖更多模板，<mark>有希望把 prompt 迭代从手感变成可比较的分数</mark>',en:'From one lesson to more templates — <mark>prompt iteration moves from gut feel to comparable scores</mark>'} }
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/JMFwwEhg4iaORak1UmNjCRo2pOc', dl:{zh:'从跑通到覆盖更多模板，<mark>有希望把 prompt 迭代从手感变成可比较的分数</mark>',en:'From one lesson to more templates — <mark>prompt iteration moves from gut feel to comparable scores</mark>'} },
+      { t:{zh:'课中巡检与告警',en:'In-class inspection and alerting'}, w:'翟亚南', p:'P1', d:{zh:'承接 W43',en:'from W43'}, gate:'hold', wip:true,
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/OXH1wdoC8iCQbGkwqRijnnS7ppb', dl:{zh:'继续推进，仍未收口；<b>链接里面有账号密码</b>',en:'Still running, not closed yet; <b>the doc has the account and password</b>'} },
+      { t:{zh:'数据标注平台升级',en:'Annotation platform upgrade'}, w:'李辰凯 / 刘思远', p:'P1', d:{zh:'11/03 上线',en:'live Nov 3'}, gate:'base', wip:true,
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/W7DUwmG9xi0MWjkzV25jeReZpMh', dl:{zh:'11 月 3 日上线，11 月 4 日（周三）迎接第一批用户',en:'Ships Nov 3; the first users land on Wednesday Nov 4'} },
+      { t:{zh:'双路 ASR 方案评估',en:'Dual-ASR architecture review'}, w:'董鹏', p:'P1', d:{zh:'从 W43 延期',en:'slipped from W43'}, kind:'bet', gate:'bet', wip:true,
+        dl:{zh:'从上周延到这里，本周暂无时间做',en:'Slipped from last week; no time for it this week'} },
+      { t:{zh:'动画片生成流水线',en:'Animation generation pipeline'}, w:'刘福成', p:'—', d:{zh:'承接 W43',en:'from W43'}, kind:'bet', gate:'bet', done:true,
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/IQhfwwh7UiO0vLk1P4KjEqBFplh', dl:{zh:'已交付第一阶段',en:'First stage delivered'} },
+      { t:{zh:'iPhone Duo 适配',en:'iPhone Duo adaptation'}, w:'Leong / 魏博源', p:'—', d:{zh:'模拟器 done',en:'simulator done'}, gate:'entry', wip:true,
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Qur5wZZujiII6SkONaIjBWF2pva', dl:{zh:'模拟器已验完；真机还没买，问题不大',en:'Simulator is done; devices not bought yet, not a blocker'} },
+      { t:{zh:'pre 环境搭建',en:'Pre-production environment'}, w:'冯强', p:'—', d:{zh:'已完成',en:'done'}, gate:'base', done:true,
+        dl:{zh:'模拟生产，提升测试覆盖度',en:'Production-like, to raise test coverage'} },
     ]},
 
   { id:'W45+', href:'#w45', date:{zh:'之后',en:'Beyond'}, range:{zh:'11/03 起',en:'From Nov 3'},
     rail:{zh:'起 11/03',en:'From Nov 3'},
-    title:{zh:'下下周及以后',en:'Week after, and beyond'},
+    title:{zh:'下周及以后',en:'Next week, and beyond'},
     story:{zh:'<span class="lab">在跑、暂无承诺日期 · {n} 项</span>没有一条带日期。不是不重要，是还没人敢给承诺——这一栏越长，说明排期越松，或者说，越诚实。',
            en:'<span class="lab">Running, no committed date · {n} items</span>Not one of them carries a date. Not because they do not matter — because nobody will commit yet. The longer this list gets, the looser the plan; or the more honest it is.'},    items:[
-      { t:{zh:'iPhone Duo 适配',en:'iPhone Duo adaptation'}, w:'Leong / 魏博源', p:'—', d:{zh:'—',en:'—'}, gate:'entry', doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Qur5wZZujiII6SkONaIjBWF2pva', dl:{zh:'54 个页面逐页检查外屏、内屏、开合三种状态',en:'All 54 screens checked across cover, inner and fold states'} },
-      { t:{zh:'App 包体积持续优化',en:'Download size, continuous'}, w:'贾宾 / 李永琪', p:'—', d:{zh:'—',en:'—'}, gate:'entry', dl:{zh:'每个生产版本有可追溯的体积检测记录',en:'A traceable size record for every production build'} },
       { t:{zh:'App 登录可靠性',en:'App sign-in reliability'}, w:'王宁宁 / 杨金鹏', p:'—', d:{zh:'—',en:'—'}, gate:'entry', dl:{zh:'D1 注册率 65%，按平台与国家拆解 Top 3',en:'65% D1 registration; top 3 issues by platform and country'} },
       { t:{zh:'崩溃与功能失效整治',en:'Crash and feature-failure clean-up'}, w:'燕航 / 沈延涛', p:'—', d:{zh:'—',en:'—'}, gate:'hold', doc:'https://dino-health-review-20261019.yanhang291.chatgpt.site/#3', dl:{zh:'崩溃用户率 ≤ 1‰，首批功能失效给技术失败率',en:'Crash-affected users ≤ 1‰; a failure rate for the first batch'} },
       { t:{zh:'崩溃：微软 SDK 修复版本回归',en:'Crash: Microsoft SDK regression'}, w:'付玉佳', p:'—', d:{zh:'下个版本',en:'next build'}, gate:'hold', dl:{zh:'带 10 月后修复版的 TTS / ASR SDK 回归',en:'Regress with the post-October TTS / ASR SDK fixes'} },
@@ -474,15 +483,9 @@ const WK = [
       { t:{zh:'游戏平台',en:'Game platform'}, w:'韩东泽', p:'—', d:{zh:'—',en:'—'}, kind:'bet', gate:'bet', dl:{zh:'平台搭好，7 个已生产的小游戏迁进来',en:'Platform standing, the seven existing mini-games migrated'} },
       { t:{zh:'自研 TTS 分流',en:'In-house TTS split'}, w:'董鹏', p:'—', d:{zh:'依赖文本规范',en:'blocked on copy spec'}, kind:'bet', gate:'bet', dl:{zh:'第一节课 50/50 分流，看第一印象差异',en:'50/50 split on the first lesson; measure first impressions'} },
       { t:{zh:'课中指标平台六个指标',en:'In-class metrics platform, six metrics'}, w:'赵腾', p:'—', d:{zh:'11 月中旬',en:'mid-Nov'}, gate:'base', doc:'http://fc-singapore.lionabc.com/dinoai-holmes/stats/query', dl:{zh:'指标定义补齐，异常指标排查 agent',en:'Metrics defined; an agent that chases abnormal ones'} },
-      { t:{zh:'pre 环境搭建',en:'Pre-production environment'}, w:'冯强', p:'—', d:{zh:'—',en:'—'}, gate:'base', dl:{zh:'模拟生产，提升测试覆盖度',en:'Production-like, to raise test coverage'} },
-      { t:{zh:'全链路追踪建设',en:'End-to-end trace IDs'}, w:'文志超', p:'—', d:{zh:'—',en:'—'}, gate:'base', dl:{zh:'先用 trace_id 串起客户端、网关、服务端',en:'Start with trace IDs across client, gateway and server'} },
       { t:{zh:'课中流程自动化验证',en:'In-class flow automation'}, w:'桂启剑', p:'—', d:{zh:'—',en:'—'}, gate:'base', dl:{zh:'脚本模拟真实上课，循环跑稳定性',en:'Scripts that loop a real lesson to catch instability'} },
-      { t:{zh:'主流程接口回归',en:'Core API regression'}, w:'李芬蕾', p:'—', d:{zh:'—',en:'—'}, gate:'base', dl:{zh:'两条链可重复跑通，每步有断言，CI 通知',en:'Two chains repeatable, assertions at each step, CI notified'} },
-      { t:{zh:'测试业务线隔离',en:'Test business-line isolation'}, w:'文志超', p:'—', d:{zh:'—',en:'—'}, gate:'base', dl:{zh:'线上回归不污染业务数据',en:'Online regression without touching production data'} },
-      { t:{zh:'测试设备借用平台',en:'Test device checkout'}, w:'许效维', p:'—', d:{zh:'—',en:'—'}, gate:'base', dl:{zh:'机型、系统、在库状态、当前持有人可筛',en:'Filter by model, OS, availability and holder'} },
       { t:{zh:'CRM / LP 自动化',en:'CRM / LP automation'}, w:'张依', p:'—', d:{zh:'已标先不做',en:'parked'}, gate:'base', dl:{zh:'新增业务线也能模块级看结果',en:'Per-module results even for a new business line'} },
       { t:{zh:'产研知识库搭建',en:'Engineering knowledge base'}, w:'董鹏', p:'—', d:{zh:'—',en:'—'}, gate:'base', dl:{zh:'现有文档规整一遍，写规范并推广',en:'Tidy the existing docs, write the rules, push adoption'} },
-      { t:{zh:'iOS 26 适配排期',en:'iOS 26 adaptation schedule'}, w:'付玉佳', p:'—', d:{zh:'年内',en:'this year'}, gate:'base', dl:{zh:'确认强制适配时点，倒排真机与发版',en:'Confirm the forced deadline; back-plan devices and releases'} }
     ]}
 ];
 
@@ -527,8 +530,8 @@ const I18N = {
     nav:[['#top','总览'],['#weeks','三周迭代']],
     kicker:'Dino AI · Tech State',
     h1:'技术<em>状态</em>',
-    lede:'三周，<b>{total} 项</b>：本周 {a} 项、下周 {b} 项、往后 {c} 项。大部分研发人力在交付业务需求，那部分写在产品里程碑里，不在这页。这里只讲另外两件事——补地基，和探索。',
-    meta:[['周期','W43 – W45+'],['数据截止','2026-10-22'],['整理','冯超'],['来源','技术专项会 · 10 月技术专项']],
+    lede:'三周，<b>{total} 项</b>：本周 {a} 项、上周 {b} 项、之后 {c} 项。大部分研发人力在交付业务需求，那部分写在产品里程碑里，不在这页。这里只讲另外两件事——补地基，和探索。',
+    meta:[['周期','W43 – W45+'],['数据截止','2026-10-29'],['整理','冯超'],['来源','技术专项会 · 10 月技术专项']],
     count:'项',
     live:'进行中',
     fbTitle:'反馈',
@@ -542,8 +545,8 @@ const I18N = {
     nav:[['#top','Overview'],['#weeks','Three weeks']],
     kicker:'Dino AI · Tech State',
     h1:'Tech <em>State</em>',
-    lede:'Three weeks, <b>{total} items</b>: {a} this week, {b} next, {c} beyond. Most of engineering is delivering business requirements — that belongs to the product roadmap, not this page. What is here is the other two things: shoring up the floor, and exploring.',
-    meta:[['Cycle','W43 – W45+'],['Data as of','2026-10-22'],['Compiled by','Feng Chao'],['Sources','Tech review · Oct program']],
+    lede:'Three weeks, <b>{total} items</b>: {a} this week, {b} last week, {c} beyond. Most of engineering is delivering business requirements — that belongs to the product roadmap, not this page. What is here is the other two things: shoring up the floor, and exploring.',
+    meta:[['Cycle','W43 – W45+'],['Data as of','2026-10-29'],['Compiled by','Feng Chao'],['Sources','Tech review · Oct program']],
     count:'items',
     live:'LIVE NOW',
     fbTitle:'Feedback',
@@ -656,12 +659,18 @@ function render(){
   document.title = 'Dino AI · Tech State';   /* 标签页固定英文，读者以海外为主 */
 
   const n = WK.map(w => w.items.length);
+  const ci = Math.max(0, WK.findIndex(w => w.core));   /* core 那一周就是“本周” */
+  const cnt = {
+    a: n[ci],
+    b: ci > 0 ? n[ci-1] : 0,
+    c: WK.slice(ci+1).reduce((x,w)=>x+w.items.length, 0)
+  };
   $('#brand').textContent = T.brand;
   $('#kicker').textContent = T.kicker;
   $('#h1').innerHTML = T.h1;
   $('#lede').innerHTML = T.lede
     .replace('{total}', n.reduce((a,b)=>a+b,0))
-    .replace('{a}', n[0]).replace('{b}', n[1]).replace('{c}', n[2]);
+    .replace('{a}', cnt.a).replace('{b}', cnt.b).replace('{c}', cnt.c);
   $('#meta').innerHTML = T.meta
     .map(([k,v],i) => `<span>${k} <b class="${i===1?'cut':''}">${v}</b></span>`).join('');
   $('#nav').innerHTML = T.nav.map(([h,l]) => `<a href="${h}">${l}</a>`).join('');
@@ -675,6 +684,7 @@ function render(){
   $('#fb-text').textContent = T.fbText;
   $('#log-title').textContent = T.logTitle;
   $('#log-list').innerHTML = `
+    <li><time>2026-10-29</time>${LANG==='zh'?'进入 W44：本周移交 W44，上周转为 16 项归档；课中指标平台、listener、动画片收口，双路 ASR 延期至本周':'Now in W44: the current week moves to W44 and last week is archived at 16 items; metrics platform, listener and animation pipeline closed, dual-ASR slipped into this week'}</li>
     <li><time>2026-10-22</time>${LANG==='zh'?'v2 结构对齐产品里程碑页：只保留页头、周轴与三个时间线节点':'v2 aligned with the product roadmap: header, week rail and three timeline nodes only'}</li>
     <li><time>2026-10-22</time>${LANG==='zh'?'v1 三周看板：27 项带日期交付、27 项在跑':'v1 three-week board: 27 dated items, 27 running'}</li>`;
   $('#foot-bot').innerHTML = T.footBot.map(t => `<span>${t}</span>`).join('');
@@ -691,7 +701,8 @@ function watchNav(){
   const secs = links.map(a => document.getElementById(a.dataset.target));
   function update(){
     const line = 176; /* 吸顶条下沿：顶栏 54 + 周轴 ~72 + 余量 */
-    let current = 0;
+    /* 页面顶部时高亮当前周，往下滚再按位置切换 */
+    let current = Math.max(0, WK.findIndex(w => w.core));
     secs.forEach((s, i) => { if(s && s.getBoundingClientRect().top <= line) current = i; });
     links.forEach((a, i) => a.classList.toggle('on', i === current));
   }
