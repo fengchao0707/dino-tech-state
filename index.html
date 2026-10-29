@@ -469,9 +469,19 @@ const WK = [
         dl:{zh:'模拟生产，提升测试覆盖度',en:'Production-like, to raise test coverage'} },
     ]},
 
-  { id:'W45+', href:'#w45', date:{zh:'之后',en:'Beyond'}, range:{zh:'11/03 起',en:'From Nov 3'},
-    rail:{zh:'起 11/03',en:'From Nov 3'},
-    title:{zh:'下周及以后',en:'Next week, and beyond'},
+  { id:'W45', href:'#w45', date:{zh:'下周',en:'Next week'}, range:{zh:'11/03 – 11/07',en:'Nov 3 – 7'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
+    rail:{zh:'11/03 – 11/07',en:'Nov 3 – 7'},
+    title:{zh:'盘点周',en:'Stock-take'},
+    story:{zh:'<span class="lab">这一周不排交付</span>花一周把 tech 的候选清单重新对一遍：哪些事直接顶业务指标，哪些事抬研发效能，哪些两样都不沾。说不清贡献什么的不进下一轮，产出是一张重排过的清单。',
+           en:'<span class="lab">No delivery this week</span>One week to re-inventory every candidate tech item: which ones move a business metric, which ones lift engineering throughput, and which do neither. Anything that cannot say what it contributes does not survive. Output: a re-ranked list.'},
+    items:[
+      { t:{zh:'技术盘点：哪些帮业务，哪些帮研发效能',en:'Tech stock-take: business value vs engineering throughput'}, w:'冯超', p:'—', d:{zh:'1 周',en:'1 week'}, gate:'base',
+        dl:{zh:'逐条对到业务指标或研发效能上；说不清贡献的不进下一轮，产出一张重排清单',en:'Each item mapped to a business metric or to throughput; anything that cannot say what it contributes is cut. Output: one re-ranked list'} }
+    ]},
+
+  { id:'W46+', href:'#w46', date:{zh:'之后',en:'Beyond'}, range:{zh:'11/10 起',en:'From Nov 10'},
+    rail:{zh:'起 11/10',en:'From Nov 10'},
+    title:{zh:'再往后',en:'Beyond'},
     story:{zh:'<span class="lab">在跑、暂无承诺日期 · {n} 项</span>没有一条带日期。不是不重要，是还没人敢给承诺——这一栏越长，说明排期越松，或者说，越诚实。',
            en:'<span class="lab">Running, no committed date · {n} items</span>Not one of them carries a date. Not because they do not matter — because nobody will commit yet. The longer this list gets, the looser the plan; or the more honest it is.'},    items:[
       { t:{zh:'App 登录可靠性',en:'App sign-in reliability'}, w:'王宁宁 / 杨金鹏', p:'—', d:{zh:'—',en:'—'}, gate:'entry', dl:{zh:'D1 注册率 65%，按平台与国家拆解 Top 3',en:'65% D1 registration; top 3 issues by platform and country'} },
@@ -527,11 +537,11 @@ const I18N = {
   zh: {
     docTitle:'Dino AI · Tech State',
     brand:'Dino AI · Tech',
-    nav:[['#top','总览'],['#weeks','三周迭代']],
+    nav:[['#top','总览'],['#weeks','四周迭代']],
     kicker:'Dino AI · Tech State',
     h1:'技术<em>状态</em>',
-    lede:'三周，<b>{total} 项</b>：本周 {a} 项、上周 {b} 项、之后 {c} 项。大部分研发人力在交付业务需求，那部分写在产品里程碑里，不在这页。这里只讲另外两件事——补地基，和探索。',
-    meta:[['周期','W43 – W45+'],['数据截止','2026-10-29'],['整理','冯超'],['来源','技术专项会 · 10 月技术专项']],
+    lede:'四周，<b>{total} 项</b>：本周 {a} 项、上周 {b} 项、之后 {c} 项。大部分研发人力在交付业务需求，那部分写在产品里程碑里，不在这页。这里只讲另外两件事——补地基，和探索。',
+    meta:[['周期','W43 – W46+'],['数据截止','2026-10-29'],['整理','冯超'],['来源','技术专项会 · 10 月技术专项']],
     count:'项',
     live:'进行中',
     fbTitle:'反馈',
@@ -542,11 +552,11 @@ const I18N = {
   en: {
     docTitle:'Dino AI · Tech State',
     brand:'Dino AI · Tech',
-    nav:[['#top','Overview'],['#weeks','Three weeks']],
+    nav:[['#top','Overview'],['#weeks','Four weeks']],
     kicker:'Dino AI · Tech State',
     h1:'Tech <em>State</em>',
-    lede:'Three weeks, <b>{total} items</b>: {a} this week, {b} last week, {c} beyond. Most of engineering is delivering business requirements — that belongs to the product roadmap, not this page. What is here is the other two things: shoring up the floor, and exploring.',
-    meta:[['Cycle','W43 – W45+'],['Data as of','2026-10-29'],['Compiled by','Feng Chao'],['Sources','Tech review · Oct program']],
+    lede:'Four weeks, <b>{total} items</b>: {a} this week, {b} last week, {c} beyond. Most of engineering is delivering business requirements — that belongs to the product roadmap, not this page. What is here is the other two things: shoring up the floor, and exploring.',
+    meta:[['Cycle','W43 – W46+'],['Data as of','2026-10-29'],['Compiled by','Feng Chao'],['Sources','Tech review · Oct program']],
     count:'items',
     live:'LIVE NOW',
     fbTitle:'Feedback',
