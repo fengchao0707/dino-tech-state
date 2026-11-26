@@ -103,7 +103,7 @@ nav.tl .wrap{display:flex;overflow-x:auto;gap:0;scrollbar-width:none}
 nav.tl .wrap::-webkit-scrollbar{display:none}
 nav.tl a{
   flex:1;min-width:120px;text-align:center;text-decoration:none;color:var(--ink-soft);
-  padding:12px 8px 10px;font-size:12.5px;letter-spacing:.04em;position:relative;
+  padding:12px 8px 15px;font-size:12.5px;letter-spacing:.04em;position:relative;
   border-left:1px solid var(--line);transition:background .25s,color .25s;white-space:nowrap;
 }
 nav.tl a:first-child{border-left:none}
@@ -117,7 +117,7 @@ nav.tl a.on{background:var(--ink)}
 nav.tl a.on b,nav.tl a.on time{color:var(--paper)}
 nav.tl a[data-current]::after{
   content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:5px;
-  width:4px;height:4px;border-radius:50%;background:var(--orange);
+  width:7px;height:7px;border-radius:50%;background:var(--orange);
 }
 nav.tl a.on[data-current]::after{background:#e9a06a}
 
@@ -565,16 +565,20 @@ const WK = [
         dl:{zh:'进课前把模板的静态资源备好，换掉边上课边加载；目标是课堂上少一次卡顿',en:'Stage the template assets before the lesson instead of loading mid-class — one less stutter'} }
     ]},
 
-  { id:'W49+', href:'#w49', date:{zh:'还没排期',en:'Unscheduled'}, range:{zh:'待定',en:'TBD'},
-    rail:{zh:'待排期',en:'Unscheduled'},
-    title:{zh:'还没排期',en:'Unscheduled'},
-    story:{zh:'<span class="lab">还没排期 · {n} 项</span>不是搁置，是还在等一个明确的人和一个明确的日期。',
-           en:'<span class="lab">Unscheduled · {n} items</span>Not shelved — still waiting for a specific name and a specific date.'},
+  { id:'W49', href:'#w49', date:{zh:'下周',en:'Next week'}, range:{zh:'12/01 – 12/05',en:'Dec 1 – 5'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
+    rail:{zh:'12/01 – 12/05',en:'Dec 1 – 5'},
+    title:{zh:'下周',en:'Next week'},
+    story:{zh:'<span class="lab">W49 · 12/01 – 12/05 · 新开一条线</span>Dino Live 要做的是一节实时的数字人课。PRD 初稿已经能读，demo 代码进了仓库，Dino 的人设初稿也在 Atmee 上试过一轮。avatar 有两条路：买 Atmee 的现成能力，或者用夏炎那套本地 3D VRM。后端栈和部署地还没拍——Daniel 11/28 到北京待两周，正好当面定。',
+           en:'<span class="lab">W49 · Dec 1 – 5 · a new line</span>Dino Live is a live digital-human class. The first PRD draft is readable, the demo code is in the repo, and a first pass at Dino\'s persona has been tried on Atmee. Two avatar routes are open: buy Atmee off the shelf, or use the local 3D VRM model Yan demoed. The backend stack and where it lives are still undecided — Daniel lands in Beijing on Nov 28 for two weeks, which is the right room to settle it.'},
     items:[
-      { t:{zh:'App 登录可靠性',en:'App sign-in reliability'}, w:'王宁宁 / 杨金鹏', p:'—', d:{zh:'—',en:'—'}, gate:'entry', dl:{zh:'D1 注册率 65%，按平台与国家拆解 Top 3',en:'65% D1 registration; top 3 issues by platform and country'} },
-      { t:{zh:'课中流程自动化验证',en:'In-class flow automation'}, w:'桂启剑', p:'—', d:{zh:'—',en:'—'}, gate:'base', dl:{zh:'脚本模拟真实上课，循环跑稳定性',en:'Scripts that loop a real lesson to catch instability'} },
-      { t:{zh:'CRM / LP 自动化',en:'CRM / LP automation'}, w:'张依', p:'—', d:{zh:'已标先不做',en:'parked'}, gate:'base', dl:{zh:'新增业务线也能模块级看结果',en:'Per-module results even for a new business line'} }
+      { t:{zh:'Dino Live MVP',en:'Dino Live MVP'}, w:'孔丽莉', p:'—', d:{zh:'—',en:'—'}, kind:'bet', gate:'bet', long:true, dur:{zh:'1 个月+',en:'1 month+'},
+        dl:{zh:'PRD 初稿可读、demo 代码进仓库、人设初稿在 Atmee 上试过；剩下的硬骨头是 avatar 选型和后端栈——两条路各有代价，等 Daniel 到北京当面拍',en:'PRD draft, demo code in the repo, a first persona pass on Atmee — the hard parts left are the avatar choice and the backend stack, and Daniel is in Beijing to call them'},
+        links:[
+          { u:'https://qjphu5vphyf4.jp.larksuite.com/docx/BMsfdJfWkojwt0xjaAqjkz04pIv', t:{zh:'Dino Live PRD · 初稿',en:'Dino Live PRD · first draft'} },
+          { u:'https://github.com/dinoclass/Dino-Live-MVP', t:{zh:'Dino-Live-MVP 仓库',en:'Dino-Live-MVP repo'} }
+        ] }
     ]}
+
 ];
 
 const GATE = {
@@ -615,11 +619,11 @@ const I18N = {
   zh: {
     docTitle:'Dino AI · Tech State',
     brand:'Dino AI · Tech',
-    nav:[['#top','总览'],['#weeks','收口与在跑']],
+    nav:[['#top','总览'],['#current','收口与在跑']],
     kicker:'Dino AI · Tech State',
     h1:'技术<em>状态</em>',
     lede:'这一版 <b>{total} 项</b>：收口 {closed} 项，还开着 {open} 项。再往前三周是封存记录，状态停在 10-29。大部分研发人力在交付业务需求，那部分写在产品里程碑里，不在这页。这里只讲另外两件事——补地基，和探索。',
-    meta:[['周期','W43 – W49+'],['数据截止','2026-11-26'],['整理','冯超'],['来源','技术专项会 · 10 月技术专项']],
+    meta:[['周期','W43 – W49'],['数据截止','2026-11-26'],['整理','冯超'],['来源','技术专项会 · 10 月技术专项']],
     count:'项',
     live:'进行中',
     fbTitle:'反馈',
@@ -630,11 +634,11 @@ const I18N = {
   en: {
     docTitle:'Dino AI · Tech State',
     brand:'Dino AI · Tech',
-    nav:[['#top','Overview'],['#weeks','Closed and running']],
+    nav:[['#top','Overview'],['#current','Closed and running']],
     kicker:'Dino AI · Tech State',
     h1:'Tech <em>State</em>',
     lede:'<b>{total} items</b> on this page: {closed} closed, {open} still open. The three weeks before that are archived, frozen at Oct 29. Most of engineering is delivering business requirements — that belongs to the product roadmap, not this page. What is here is the other two things: shoring up the floor, and exploring.',
-    meta:[['Cycle','W43 – W49+'],['Data as of','2026-11-26'],['Compiled by','Feng Chao'],['Sources','Tech review · Oct program']],
+    meta:[['Cycle','W43 – W49'],['Data as of','2026-11-26'],['Compiled by','Feng Chao'],['Sources','Tech review · Oct program']],
     count:'items',
     live:'LIVE NOW',
     fbTitle:'Feedback',
@@ -689,6 +693,7 @@ function item(i){
 
 function nodes(){
   const T = I18N[LANG];
+  const cnt = n => `${n} ${n === 1 ? (LANG === 'zh' ? '项' : 'item') : T.count}`;
   $('#board').innerHTML = WK.map(w => {
     const { c, done } = counts(w.items);
     const prio = [
@@ -719,7 +724,7 @@ function nodes(){
 
     const halve = (kind, body) => `
       <div class="half ${kind}">
-        <div class="half-head">${HALF[kind][LANG][0]}<span class="half-n">${kind === 'health' ? health.length : bets.length} ${T.count}</span></div>
+        <div class="half-head">${HALF[kind][LANG][0]}<span class="half-n">${cnt(kind === 'health' ? health.length : bets.length)}</span></div>
         <div class="half-sub">${HALF[kind][LANG][1]}</div>
         ${body}
       </div>`;
@@ -735,7 +740,7 @@ function nodes(){
         <div class="node-sub">${w.date[LANG]}<br>${w.range[LANG]}${w.days?`<br>${w.days[LANG]}`:''}</div>
       </div>
       <div class="node-body">
-        <h2 class="node-title">${w.title[LANG]}${w.live?`<span class="tag live">${T.live}</span>`:''}<span class="tag">${w.items.length} ${T.count}</span></h2>
+        <h2 class="node-title">${w.title[LANG]}${w.live?`<span class="tag live">${T.live}</span>`:''}<span class="tag">${cnt(w.items.length)}</span></h2>
         <div class="story">${story}</div>
         ${healthBlock}
         ${betBlock}
@@ -760,7 +765,9 @@ function render(){
     .replace('{closed}', closedN).replace('{open}', total - closedN);
   $('#meta').innerHTML = T.meta
     .map(([k,v],i) => `<span>${k} <b class="${i===1?'cut':''}">${v}</b></span>`).join('');
-  $('#nav').innerHTML = T.nav.map(([h,l]) => `<a href="${h}">${l}</a>`).join('');
+  /* “收口与在跑”直接落到当前周，而不是周轴顶部 */
+  const homeHref = (WK.find(w => w.core) || WK[0]).href;
+  $('#nav').innerHTML = T.nav.map(([h,l]) => `<a href="${h === '#current' ? homeHref : h}">${l}</a>`).join('');
 
   rail();
   nodes();
@@ -771,7 +778,7 @@ function render(){
   $('#fb-text').textContent = T.fbText;
   $('#log-title').textContent = T.logTitle;
   $('#log-list').innerHTML = `
-    <li><time>2026-11-26</time>${LANG==='zh'?'W46 / W47 收口：两周收掉 10 项，剩 4 项开着；页面从“逐周排期”改成“收口 / 还开着”两段':'W46 / W47 closed: ten items landed in two weeks, four still open; the page shifts from a weekly schedule to closed vs still open'}</li>
+    <li><time>2026-11-26</time>${LANG==='zh'?'W48 建块（11 月技术专项 4 项 + CRM 走 raft.build），W49 开 Dino Live；待排的三条移除':'W48 added (four from the November programme, plus CRM on raft.build); W49 opens Dino Live; three unscheduled items removed'}</li>
     <li><time>2026-10-29</time>${LANG==='zh'?'进入 W44：本周移交 W44，上周转为 16 项归档；课中指标平台、listener、动画片收口，双路 ASR 延期至本周':'Now in W44: the current week moves to W44 and last week is archived at 16 items; metrics platform, listener and animation pipeline closed, dual-ASR slipped into this week'}</li>
     <li><time>2026-10-22</time>${LANG==='zh'?'v2 结构对齐产品里程碑页：只保留页头、周轴与三个时间线节点':'v2 aligned with the product roadmap: header, week rail and three timeline nodes only'}</li>
     <li><time>2026-10-22</time>${LANG==='zh'?'v1 三周看板：27 项带日期交付、27 项在跑':'v1 three-week board: 27 dated items, 27 running'}</li>`;
