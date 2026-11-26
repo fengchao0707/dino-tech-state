@@ -159,6 +159,7 @@ nav.tl a.on[data-current]::after{background:#e9a06a}
 }
 .node.core .node-title .tag{border-color:var(--orange);color:var(--orange)}
 .node.core .node-title .tag.live{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:600}
+#lede:empty{display:none}
 .story{
   margin:16px 0 22px;padding:16px 22px;background:var(--card);border-left:4px solid var(--green);
   font-size:15px;line-height:1.85;color:var(--ink);box-shadow:0 2px 12px rgba(31,42,36,.04);
@@ -622,8 +623,8 @@ const I18N = {
     nav:[['#top','总览'],['#current','收口与在跑']],
     kicker:'Dino AI · Tech State',
     h1:'技术<em>状态</em>',
-    lede:'这一版 <b>{total} 项</b>：收口 {closed} 项，还开着 {open} 项。再往前三周是封存记录，状态停在 10-29。大部分研发人力在交付业务需求，那部分写在产品里程碑里，不在这页。这里只讲另外两件事——补地基，和探索。',
-    meta:[['周期','W43 – W49'],['数据截止','2026-11-26'],['整理','冯超'],['来源','技术专项会 · 10 月技术专项']],
+    lede:'',
+    meta:[['周期','W43 – W49'],['数据截止','2026-11-26'],['整理','冯超'],['来源','10 月专项 + 11 月专项']],
     count:'项',
     live:'进行中',
     fbTitle:'反馈',
@@ -637,8 +638,8 @@ const I18N = {
     nav:[['#top','Overview'],['#current','Closed and running']],
     kicker:'Dino AI · Tech State',
     h1:'Tech <em>State</em>',
-    lede:'<b>{total} items</b> on this page: {closed} closed, {open} still open. The three weeks before that are archived, frozen at Oct 29. Most of engineering is delivering business requirements — that belongs to the product roadmap, not this page. What is here is the other two things: shoring up the floor, and exploring.',
-    meta:[['Cycle','W43 – W49'],['Data as of','2026-11-26'],['Compiled by','Feng Chao'],['Sources','Tech review · Oct program']],
+    lede:'',
+    meta:[['Cycle','W43 – W49'],['Data as of','2026-11-26'],['Compiled by','Feng Chao'],['Sources','Oct + Nov programmes']],
     count:'items',
     live:'LIVE NOW',
     fbTitle:'Feedback',
