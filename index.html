@@ -207,11 +207,22 @@ a.it-t .lk{
 }
 a.it-t .lk svg{width:11px;height:11px;display:block;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 a.it-t:hover .lk{background:#14402c;transform:translateY(-1px)}
+.it-links{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:7px}
+.it-links a{
+  display:inline-flex;align-items:center;font-size:12px;color:#155f3b;text-decoration:none;
+  border-bottom:1px solid #cfe4d6;padding-bottom:1px;transition:border-color .15s,color .15s;
+}
+.it-links a:hover{border-bottom-color:#155f3b;color:#0f4a2d}
+.it-links .lk{
+  display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;
+  margin-left:6px;border-radius:3px;background:var(--green);color:#fff;
+}
+.it-links .lk svg{width:9px;height:9px;display:block;fill:none;stroke:currentColor;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
 .it-meta{margin-left:auto;display:flex;align-items:baseline;gap:11px;font-size:11.5px;color:var(--faint);white-space:nowrap}
 .it-w{color:var(--ink);font-weight:500}
 .it-d{font-variant-numeric:tabular-nums}
 .it-l2{font-size:12.5px;color:var(--ink-soft);margin-top:4px;line-height:1.6}
-.it-l2 mark{background:#d8efdf;color:#155f3b;font-weight:600;padding:0 4px;border-radius:2px;box-decoration-break:clone}
+.it-l2 mark,.story mark{background:#d8efdf;color:#155f3b;font-weight:600;padding:0 4px;border-radius:2px;box-decoration-break:clone}
 .secret{
   flex:0 0 auto;font-size:10px;font-weight:600;letter-spacing:.03em;
   padding:1px 8px;border-radius:99px;background:#fbeedd;color:#a35d19;
@@ -373,9 +384,9 @@ a.it-t:hover .lk{background:#14402c;transform:translateY(-1px)}
    ============================================================ */
 
 const WK = [
-  { id:'W43', href:'#w43', date:{zh:'上周',en:'Last week'}, range:{zh:'10/20 – 10/24',en:'Oct 20 – 24'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
+  { id:'W43', href:'#w43', frozen:true, date:{zh:'已封存',en:'Archived'}, range:{zh:'10/20 – 10/24',en:'Oct 20 – 24'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
     rail:{zh:'10/20 – 10/24',en:'Oct 20 – 24'},
-    title:{zh:'上周交付',en:'Last week'},
+    title:{zh:'已封存',en:'Archived'},
     story:{zh:'<span class="lab">技术专项会 · 10-21 版台账 · {n} 项</span>{prio}，{done} 项已经落地，其中课中指标接进看板、AI teacher 从 120MB 砍到 80MB、支付链路补上埋点。剩下的都在跑。这一周只做一件事——把「感觉还行」换成「能看见数」。',
            en:'<span class="lab">Tech review · Oct 21 ledger · {n} items</span>{prio}; {done} already landed, including in-class metrics on a dashboard, AI teacher assets cut from 120MB to 80MB, and payment instrumentation. The rest is in flight. One job this week — turn “feels fine” into a number.'},
     items:[
@@ -385,9 +396,9 @@ const WK = [
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/IvWCwgAzuiBMdikvvJIjewGkpTs', dl:{zh:'Max <mark>120MB → 80MB</mark>；Leo 和 Kim 还在做',en:'Max <mark>120MB → 80MB</mark>; Leo and Kim still in progress'} },
       { t:{zh:'教室性能提升，方案确定',en:'Classroom performance, approach fixed'}, w:'刘亚平 / 李政 / 鲁新建', p:'P0', d:{zh:'10-25',en:'Oct 25'}, gate:'hold', done:true,
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Mk7LwdhuAiXDzekbsWJj1IlKpo8', dl:{zh:'把 H5 视频换成 Native 视频：性能更好，低端机也能跑',en:'H5 video replaced with native video: better performance, usable on low-end devices'} },
-      { t:{zh:'Apple 登录异常补埋点',en:'Instrument Apple sign-in failures'}, w:'付玉佳', p:'P1', d:{zh:'本周',en:'This week'}, gate:'entry', done:true,
+      { t:{zh:'Apple 登录异常补埋点',en:'Instrument Apple sign-in failures'}, w:'付玉佳', p:'P1', d:{zh:'当周',en:'that week'}, gate:'entry', done:true,
         dl:{zh:'区分 14002 与 SDK 返错，Apple 与安卓分列',en:'Separate 14002 from SDK errors; Apple and Android counted apart'} },
-      { t:{zh:'App 端 · 支付链路补埋点',en:'App · payment failure instrumentation'}, w:'郭浦然 / 覃熠珲', p:'P1', d:{zh:'本周',en:'This week'}, gate:'pay', done:true,
+      { t:{zh:'App 端 · 支付链路补埋点',en:'App · payment failure instrumentation'}, w:'郭浦然 / 覃熠珲', p:'P1', d:{zh:'当周',en:'that week'}, gate:'pay', done:true,
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Iy3CwpLRTiLB0tkxR8ijpn3qpwd', dl:{zh:'把「支付不可用」按原因拆开',en:'Break “payment unavailable” down by cause'} },
       { t:{zh:'服务端 · 支付稳定性看板',en:'Server · payment reliability dashboard'}, w:'罗伟', p:'P1', d:{zh:'本周启动',en:'Starts this week'}, gate:'pay', done:true,
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Xc1zw3nHzihoIdkxaTEjDAXjpie', dl:{zh:'支付方式 × 厂商矩阵下钻，技术侧按 99% 考核',en:'Method × provider drill-down; 99% internal SLA'} },
@@ -408,7 +419,7 @@ const WK = [
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/IQhfwwh7UiO0vLk1P4KjEqBFplh', dl:{zh:'验收是「一套让教研满意的动画片」，不是产能',en:'Acceptance is one set the curriculum team is happy with, not volume'} },
 
 
-      { t:{zh:'课中指标平台',en:'In-class metrics platform'}, w:'赵腾', p:'P0', d:{zh:'本周',en:'This week'}, gate:'base', done:true,
+      { t:{zh:'课中指标平台',en:'In-class metrics platform'}, w:'赵腾', p:'P0', d:{zh:'当周',en:'that week'}, gate:'base', done:true,
         doc:'http://fc-singapore.lionabc.com/dinoai-holmes/stats/query', dl:{zh:'覆盖 11 位产品、教研、业务同学；不需要密码即可查看',en:'Reach 11 people across product, curriculum and business; no password needed'} },
       { t:{zh:'课中巡检与告警',en:'In-class inspection and alerting'}, w:'翟亚南', p:'P1', d:{zh:'2 周',en:'2 weeks'}, gate:'hold', wip:true,
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/OXH1wdoC8iCQbGkwqRijnnS7ppb', dl:{zh:'并入课中指标平台，教研产品研发拉进巡检群；<b>链接里面有账号密码</b>',en:'Folded into the in-class metrics platform; curriculum, product and eng in one room; <b>the doc has the account and password</b>'} },
@@ -418,9 +429,10 @@ const WK = [
       { t:{zh:'数据标注平台升级',en:'Annotation platform upgrade'}, w:'李辰凯 / 刘思远', p:'P1', d:{zh:'2 周+',en:'2 weeks+'}, gate:'base', wip:true,
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/W7DUwmG9xi0MWjkzV25jeReZpMh', dl:{zh:'面向更多众包标注人员，把产能从内部扩到外部',en:'Open annotation to far more crowd workers, not just the internal team'} }
     ]},
-  { id:'W44', href:'#w44', core:true, live:true, date:{zh:'本周',en:'This week'}, range:{zh:'10/27 – 10/31',en:'Oct 27 – 31'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
+
+  { id:'W44', href:'#w44', frozen:true, date:{zh:'已封存',en:'Archived'}, range:{zh:'10/27 – 10/31',en:'Oct 27 – 31'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
     rail:{zh:'10/27 – 10/31',en:'Oct 27 – 31'},
-    title:{zh:'本周交付',en:'This week'},
+    title:{zh:'已封存',en:'Archived'},
     story:{zh:'<span class="lab">承接 10-21 台账 · {n} 项</span>{prio}，另有 {un} 项未定级。七个死线赶在周五下班前收口：包体、进课、短信、机型、告警、监控、麦克风；教室性能还在联调。',
            en:'<span class="lab">Carried from the Oct 21 ledger · {n} items</span>{prio}, plus {un} unranked. Seven deadlines closed before Friday EOD — package size, entry, SMS, device tiers, alerts, monitoring, microphone permission; classroom performance is still in integration.'},
     items:[
@@ -469,7 +481,8 @@ const WK = [
         dl:{zh:'模拟生产，提升测试覆盖度',en:'Production-like, to raise test coverage'} },
     ]},
 
-  { id:'W45', href:'#w45', date:{zh:'下周',en:'Next week'}, range:{zh:'11/03 – 11/07',en:'Nov 3 – 7'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
+
+  { id:'W45', href:'#w45', frozen:true, date:{zh:'已封存',en:'Archived'}, range:{zh:'11/03 – 11/07',en:'Nov 3 – 7'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
     rail:{zh:'11/03 – 11/07',en:'Nov 3 – 7'},
     title:{zh:'盘点周',en:'Stock-take'},
     story:{zh:'<span class="lab">这一周不排交付</span>花一周把 tech 的候选清单重新对一遍：哪些事直接顶业务指标，哪些事抬研发效能，哪些两样都不沾。说不清贡献什么的不进下一轮，产出是一张重排过的清单。',
@@ -479,23 +492,61 @@ const WK = [
         dl:{zh:'逐条对到业务指标或研发效能上；说不清贡献的不进下一轮，产出一张重排清单',en:'Each item mapped to a business metric or to throughput; anything that cannot say what it contributes is cut. Output: one re-ranked list'} }
     ]},
 
-  { id:'W46+', href:'#w46', date:{zh:'之后',en:'Beyond'}, range:{zh:'11/10 起',en:'From Nov 10'},
-    rail:{zh:'起 11/10',en:'From Nov 10'},
-    title:{zh:'再往后',en:'Beyond'},
-    story:{zh:'<span class="lab">在跑、暂无承诺日期 · {n} 项</span>没有一条带日期。不是不重要，是还没人敢给承诺——这一栏越长，说明排期越松，或者说，越诚实。',
-           en:'<span class="lab">Running, no committed date · {n} items</span>Not one of them carries a date. Not because they do not matter — because nobody will commit yet. The longer this list gets, the looser the plan; or the more honest it is.'},    items:[
+
+  { id:'W46', href:'#w46', date:{zh:'已收口',en:'Closed'}, range:{zh:'11/10 – 11/14',en:'Nov 10 – 14'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
+    rail:{zh:'11/10 – 11/14',en:'Nov 10 – 14'},
+    title:{zh:'已收口',en:'Closed'},
+    story:{zh:'<span class="lab">W46 · 11/10 – 11/14 · 收掉 {n} 项</span>这一周清的是欠账：网络、支付、自研 TTS、指标平台、游戏平台五件一起落地。探索侧更硬——众包标注平台从开发一路推到上线，云测把设备借用和主流程回归接进流水线。最实在的一个数：<mark>自研 TTS 分流带来 5–6 个百分点的完课率提升</mark>。',
+           en:'<span class="lab">W46 · Nov 10 – 14 · {n} closed</span>A week of paying debts: network, payments, in-house TTS, the metrics platform and the game platform all landed. The exploration side is harder — the crowd-annotation platform went from build to live, and cloud testing absorbed device checkout and core regression. The number that matters: <mark>the in-house TTS split lifted completion by 5–6 points</mark>.'},
+    items:[
+      { t:{zh:'网络问题收集与 HTTPDNS',en:'Network instrumentation and HTTPDNS'}, w:'李晓鹏 / 郭武鑫', p:'—', d:{zh:'—',en:'—'}, gate:'hold', done:true,
+        dl:{zh:'按解析、连接、服务端、业务四类拆开，网络失败终于能归因到具体一段',en:'Split into DNS, connect, server and business errors — a network failure now points at a stage'} },
+      { t:{zh:'支付权益可靠性',en:'Payment and entitlement reliability'}, w:'郭浦然 / 覃熠珲', p:'—', d:{zh:'—',en:'—'}, gate:'pay', done:true,
+        dl:{zh:'订阅技术成功率定了基线，日报可以直接对账，不再靠用户投诉发现掉单',en:'A subscription success baseline exists; the daily report is the source of truth, not user complaints'} },
+      { t:{zh:'自研 TTS 分流',en:'In-house TTS split'}, w:'董鹏', p:'—', d:{zh:'—',en:'—'}, gate:'hold', done:true,
+        dl:{zh:'第一节课 50/50 分流跑完，<mark>完课率提升 5–6 个百分点</mark>；这是这一季少数能直接换成分数的技术动作',en:'A 50/50 split on the first lesson; <mark>completion up 5–6 points</mark> — one of the few technical moves this quarter that converts straight into a number'} },
+      { t:{zh:'课中指标平台',en:'In-class metrics platform'}, w:'赵腾', p:'—', d:{zh:'—',en:'—'}, gate:'base', done:true,
+        doc:'http://fc-singapore.lionabc.com/dinoai-holmes/stats/query', dl:{zh:'六个指标定义补齐，异常指标由 agent 追着人走，不用人去翻看板',en:'Six metrics defined; an agent chases abnormal ones instead of people watching dashboards'} },
+      { t:{zh:'游戏平台',en:'Game platform'}, w:'韩东泽', p:'—', d:{zh:'—',en:'—'}, gate:'base', done:true,
+        dl:{zh:'7 个已生产的小游戏迁进平台；产品经理可以自己 vibe coding 出新游戏、直接发布，不用排研发',en:'Seven existing mini-games migrated; product managers can vibe-code a new one and ship it without queuing for engineering'} },
+      { t:{zh:'raft.build 搭 AI 研发团队',en:'An AI engineering team on raft.build'}, w:'李辰凯 / 冯超', p:'P1', d:{zh:'—',en:'—'}, kind:'bet', gate:'bet', done:true, long:true, dur:{zh:'6 周+',en:'6 weeks+'},
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Yd7swayt9iL7HQkvi5djRi0LpTC',
+        dl:{zh:'众包标注平台走完开发、测试、上线 —— <mark>第一次把一个真业务系统从头做到线上</mark>，不是 demo',en:'The crowd-annotation platform went build → test → live — <mark>the first real system taken end to end on it</mark>, not a demo'} },
+      { t:{zh:'云测',en:'Cloud testing'}, w:'许效维', p:'P1', d:{zh:'—',en:'—'}, kind:'bet', gate:'bet', done:true, long:true,
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/OxREwvWuiCDSek92ZGjp7ZBpyc', dl:{zh:'设备借用、主流程回归两项落地，测试不再靠手工点',en:'Device checkout and core regression both landed; testing stops being hand-clicking'} }
+    ]},
+
+  { id:'W47', href:'#w47', date:{zh:'已收口',en:'Closed'}, range:{zh:'11/17 – 11/21',en:'Nov 17 – 21'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
+    rail:{zh:'11/17 – 11/21',en:'Nov 17 – 21'},
+    title:{zh:'已收口',en:'Closed'},
+    story:{zh:'<span class="lab">W47 · 11/17 – 11/21 · 收掉 {n} 项</span>这一周做两件事：把会出问题的地方收拾干净，再补一块新能力。崩溃与功能失效整治收口，微软 SDK 的修复版回归通过，产研知识库按 DinoAI 产研、AI 课、Dino AI native 三个库分完——以后找不到文档，不能再说「没有库」；CMS-Agent 2.0 的自定义生课也跑通了，一个想法能直接变成一门课。',
+           en:'<span class="lab">W47 · Nov 17 – 21 · {n} closed</span>Two things this week: clean up what breaks, and add one new capability. The crash and feature-failure clean-up closed, the Microsoft SDK fix passed regression, the knowledge base split into three — from now on a missing document is no longer explained by “we have no library”; and CMS-Agent 2.0 now assembles a custom course, so an idea turns straight into a lesson.'},
+    items:[
+      { t:{zh:'崩溃与功能失效整治',en:'Crash and feature-failure clean-up'}, w:'燕航 / 沈延涛', p:'—', d:{zh:'—',en:'—'}, gate:'hold', done:true,
+        dl:{zh:'崩溃与功能失效有了统一口径，按问题类型分人收口，不再是谁碰上谁查',en:'One definition for crashes and feature failures, split by type and owned per person'},
+        links:[
+          { u:'https://qjphu5vphyf4.jp.larksuite.com/docx/WsdRdVKq0oMeOpxH0y1jyTAWpug', t:{zh:'双端业务功能与稳定性治理总览 · 每周进展',en:'Cross-platform stability and feature-failure tracker · weekly'} },
+          { u:'https://qjphu5vphyf4.jp.larksuite.com/wiki/GPqjw7tFWifNJ5kkdaLj2oXdpie', t:{zh:'Android 稳定性与功能可用性改动概览',en:'Android stability and feature-availability changes'} }
+        ] },
+      { t:{zh:'崩溃治理：微软 SDK 修复',en:'Crashes: Microsoft SDK fix'}, w:'付玉佳', p:'—', d:{zh:'—',en:'—'}, gate:'hold', done:true,
+        dl:{zh:'带修复版的 TTS / ASR SDK 完成回归，版本已经发出去',en:'Regression passed on the fixed TTS / ASR SDK; the build is out'},
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/VIwUwxSUWimyY3kdetDjJP97pYf' },
+      { t:{zh:'CMS-Agent 2.0 自定义生课',en:'CMS-Agent 2.0 course assembly'}, w:'祁建泉', p:'—', d:{zh:'—',en:'—'}, kind:'bet', gate:'bet', done:true,
+        dl:{zh:'自定义生课跑通：一个想法能直接变成可用的课程结构，不再靠人工拼模板',en:'Custom course assembly works: an idea turns straight into a usable course structure, no manual template stitching'},
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/FsRBwTmKdi4k4LkNBTHjuhuwpYt' },
+      { t:{zh:'产研知识库搭建',en:'Engineering knowledge base'}, w:'董鹏', p:'—', d:{zh:'—',en:'—'}, gate:'base', done:true,
+        dl:{zh:'按 DinoAI 产研、AI 课、Dino AI native 三个库分完，文档各自归位',en:'Split into DinoAI product-engineering, AI course and Dino AI native; documents filed into their own library'} }
+    ]},
+
+  { id:'W48+', href:'#w48', core:true, date:{zh:'还开着',en:'Still open'}, range:{zh:'11/24 起',en:'From Nov 24'},
+    rail:{zh:'11/24 起',en:'From Nov 24'},
+    title:{zh:'还开着',en:'Still open'},
+    story:{zh:'<span class="lab">还开着 · {n} 项</span>不是搁置，是还在等一个明确的人和一个明确的日期。',
+           en:'<span class="lab">Still open · {n} items</span>Not shelved — still waiting for a specific name and a specific date.'},
+    items:[
       { t:{zh:'App 登录可靠性',en:'App sign-in reliability'}, w:'王宁宁 / 杨金鹏', p:'—', d:{zh:'—',en:'—'}, gate:'entry', dl:{zh:'D1 注册率 65%，按平台与国家拆解 Top 3',en:'65% D1 registration; top 3 issues by platform and country'} },
-      { t:{zh:'崩溃与功能失效整治',en:'Crash and feature-failure clean-up'}, w:'燕航 / 沈延涛', p:'—', d:{zh:'—',en:'—'}, gate:'hold', doc:'https://dino-health-review-20261019.yanhang291.chatgpt.site/#3', dl:{zh:'崩溃用户率 ≤ 1‰，首批功能失效给技术失败率',en:'Crash-affected users ≤ 1‰; a failure rate for the first batch'} },
-      { t:{zh:'崩溃：微软 SDK 修复版本回归',en:'Crash: Microsoft SDK regression'}, w:'付玉佳', p:'—', d:{zh:'下个版本',en:'next build'}, gate:'hold', dl:{zh:'带 10 月后修复版的 TTS / ASR SDK 回归',en:'Regress with the post-October TTS / ASR SDK fixes'} },
-      { t:{zh:'网络问题收集与 HTTPDNS',en:'Network instrumentation and HTTPDNS'}, w:'李晓鹏 / 郭武鑫', p:'—', d:{zh:'—',en:'—'}, gate:'hold', dl:{zh:'按解析、连接、服务端、业务四类拆开',en:'Split into DNS, connect, server and business errors'} },
-      { t:{zh:'支付权益可靠性',en:'Payment and entitlement reliability'}, w:'郭浦然 / 覃熠珲', p:'—', d:{zh:'—',en:'—'}, gate:'pay', dl:{zh:'定订阅技术成功率标准并作为基线',en:'Set the subscription technical success baseline'} },
-      { t:{zh:'CMS-Agent 2.0 自定义生课',en:'CMS-Agent 2.0 course assembly'}, w:'祈建泉', p:'—', d:{zh:'—',en:'—'}, kind:'bet', gate:'bet', dl:{zh:'跑通自定义课程生成与灵活组课',en:'Custom course generation and flexible assembly working'} },
-      { t:{zh:'游戏平台',en:'Game platform'}, w:'韩东泽', p:'—', d:{zh:'—',en:'—'}, kind:'bet', gate:'bet', dl:{zh:'平台搭好，7 个已生产的小游戏迁进来',en:'Platform standing, the seven existing mini-games migrated'} },
-      { t:{zh:'自研 TTS 分流',en:'In-house TTS split'}, w:'董鹏', p:'—', d:{zh:'依赖文本规范',en:'blocked on copy spec'}, kind:'bet', gate:'bet', dl:{zh:'第一节课 50/50 分流，看第一印象差异',en:'50/50 split on the first lesson; measure first impressions'} },
-      { t:{zh:'课中指标平台六个指标',en:'In-class metrics platform, six metrics'}, w:'赵腾', p:'—', d:{zh:'11 月中旬',en:'mid-Nov'}, gate:'base', doc:'http://fc-singapore.lionabc.com/dinoai-holmes/stats/query', dl:{zh:'指标定义补齐，异常指标排查 agent',en:'Metrics defined; an agent that chases abnormal ones'} },
       { t:{zh:'课中流程自动化验证',en:'In-class flow automation'}, w:'桂启剑', p:'—', d:{zh:'—',en:'—'}, gate:'base', dl:{zh:'脚本模拟真实上课，循环跑稳定性',en:'Scripts that loop a real lesson to catch instability'} },
-      { t:{zh:'CRM / LP 自动化',en:'CRM / LP automation'}, w:'张依', p:'—', d:{zh:'已标先不做',en:'parked'}, gate:'base', dl:{zh:'新增业务线也能模块级看结果',en:'Per-module results even for a new business line'} },
-      { t:{zh:'产研知识库搭建',en:'Engineering knowledge base'}, w:'董鹏', p:'—', d:{zh:'—',en:'—'}, gate:'base', dl:{zh:'现有文档规整一遍，写规范并推广',en:'Tidy the existing docs, write the rules, push adoption'} },
+      { t:{zh:'CRM / LP 自动化',en:'CRM / LP automation'}, w:'张依', p:'—', d:{zh:'已标先不做',en:'parked'}, gate:'base', dl:{zh:'新增业务线也能模块级看结果',en:'Per-module results even for a new business line'} }
     ]}
 ];
 
@@ -530,18 +581,18 @@ function who(w){
 
 const HALF = {
   health:{ zh:['技术健康度','不涨上限，只抬下限'], en:['Technical health','Not raising the ceiling — raising the floor'] },
-  bet:{ zh:['技术探索','没有答案，但值得下注'], en:['Exploration','No answer yet — but worth the bet'] }
+  bet:{ zh:['技术探索','赌过的，和还在赌的'], en:['Exploration','Bets that paid off, and bets still running'] }
 };
 
 const I18N = {
   zh: {
     docTitle:'Dino AI · Tech State',
     brand:'Dino AI · Tech',
-    nav:[['#top','总览'],['#weeks','四周迭代']],
+    nav:[['#top','总览'],['#weeks','两周收口']],
     kicker:'Dino AI · Tech State',
     h1:'技术<em>状态</em>',
-    lede:'四周，<b>{total} 项</b>：本周 {a} 项、上周 {b} 项、之后 {c} 项。大部分研发人力在交付业务需求，那部分写在产品里程碑里，不在这页。这里只讲另外两件事——补地基，和探索。',
-    meta:[['周期','W43 – W46+'],['数据截止','2026-10-29'],['整理','冯超'],['来源','技术专项会 · 10 月技术专项']],
+    lede:'最近两周，<b>{total} 项</b>：收口 {closed} 项，还开着 {open} 项。再往前三周是封存记录，状态停在 10-29。大部分研发人力在交付业务需求，那部分写在产品里程碑里，不在这页。这里只讲另外两件事——补地基，和探索。',
+    meta:[['周期','W43 – W48+'],['数据截止','2026-11-26'],['整理','冯超'],['来源','技术专项会 · 10 月技术专项']],
     count:'项',
     live:'进行中',
     fbTitle:'反馈',
@@ -552,11 +603,11 @@ const I18N = {
   en: {
     docTitle:'Dino AI · Tech State',
     brand:'Dino AI · Tech',
-    nav:[['#top','Overview'],['#weeks','Four weeks']],
+    nav:[['#top','Overview'],['#weeks','Two weeks']],
     kicker:'Dino AI · Tech State',
     h1:'Tech <em>State</em>',
-    lede:'Four weeks, <b>{total} items</b>: {a} this week, {b} last week, {c} beyond. Most of engineering is delivering business requirements — that belongs to the product roadmap, not this page. What is here is the other two things: shoring up the floor, and exploring.',
-    meta:[['Cycle','W43 – W46+'],['Data as of','2026-10-29'],['Compiled by','Feng Chao'],['Sources','Tech review · Oct program']],
+    lede:'The last two weeks, <b>{total} items</b>: {closed} closed, {open} still open. The three weeks before that are archived, frozen at Oct 29. Most of engineering is delivering business requirements — that belongs to the product roadmap, not this page. What is here is the other two things: shoring up the floor, and exploring.',
+    meta:[['Cycle','W43 – W48+'],['Data as of','2026-11-26'],['Compiled by','Feng Chao'],['Sources','Tech review · Oct program']],
     count:'items',
     live:'LIVE NOW',
     fbTitle:'Feedback',
@@ -587,7 +638,10 @@ function rail(){
 }
 
 function item(i){
-  const title = i.doc
+  /* 只有一个链接时挂在标题上，两个以上才单列一行带名字的链接 */
+  const multi = i.links && i.links.length > 1 ? i.links : null;
+  const doc = i.doc || (i.links && i.links.length === 1 ? i.links[0].u : null);
+  const title = doc
     ? `<a class="it-t" href="${i.doc}" target="_blank" rel="noopener">${i.t[LANG]}<span class="lk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8"/></svg></span></a>`
     : `<span class="it-t">${i.t[LANG]}</span>`;
   return `
@@ -598,9 +652,9 @@ function item(i){
       ${i.p && i.p !== '—' ? `<span class="p-badge ${i.p.toLowerCase()}">${i.p}</span>` : ''}
       <span class="it-meta"><span class="it-w">${who(i.w)}</span>${i.d[LANG] && i.d[LANG] !== '—' ? `<span class="it-d">${i.d[LANG]}</span>` : ''}</span>
     </div>
-    <div class="it-l2">${i.dl[LANG]}</div>
+    <div class="it-l2">${i.dl[LANG]}${multi ? `<div class="it-links">${multi.map(l => `<a href="${l.u}" target="_blank" rel="noopener">${l.t[LANG]}<span class="lk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8"/></svg></span></a>`).join('')}</div>` : ''}</div>
     ${i.access ? `<div class="it-access">${i.access[LANG]}</div>` : ''}
-    ${i.kind==='bet' ? `<div class="it-note">${LANG==='zh'
+    ${i.kind==='bet' && !i.done ? `<div class="it-note">${LANG==='zh'
         ? '需要 ' + (i.dur ? i.dur.zh : '2 周+') + ' 的时间去探索、试错'
         : 'Needs ' + (i.dur ? i.dur.en : '2 weeks+') + ' to explore and iterate'}</div>` : ''}
   </li>`;
@@ -668,19 +722,15 @@ function render(){
   document.documentElement.lang = LANG === 'zh' ? 'zh-CN' : 'en';
   document.title = 'Dino AI · Tech State';   /* 标签页固定英文，读者以海外为主 */
 
-  const n = WK.map(w => w.items.length);
-  const ci = Math.max(0, WK.findIndex(w => w.core));   /* core 那一周就是“本周” */
-  const cnt = {
-    a: n[ci],
-    b: ci > 0 ? n[ci-1] : 0,
-    c: WK.slice(ci+1).reduce((x,w)=>x+w.items.length, 0)
-  };
+  const live = WK.filter(w => !w.frozen);          /* 封存周只做记录，不进统计 */
+  const total = live.reduce((x,w)=>x + w.items.length, 0);
+  const closedN = live.reduce((x,w)=>x + w.items.filter(i=>i.done).length, 0);
   $('#brand').textContent = T.brand;
   $('#kicker').textContent = T.kicker;
   $('#h1').innerHTML = T.h1;
   $('#lede').innerHTML = T.lede
-    .replace('{total}', n.reduce((a,b)=>a+b,0))
-    .replace('{a}', cnt.a).replace('{b}', cnt.b).replace('{c}', cnt.c);
+    .replace('{total}', total)
+    .replace('{closed}', closedN).replace('{open}', total - closedN);
   $('#meta').innerHTML = T.meta
     .map(([k,v],i) => `<span>${k} <b class="${i===1?'cut':''}">${v}</b></span>`).join('');
   $('#nav').innerHTML = T.nav.map(([h,l]) => `<a href="${h}">${l}</a>`).join('');
@@ -694,6 +744,7 @@ function render(){
   $('#fb-text').textContent = T.fbText;
   $('#log-title').textContent = T.logTitle;
   $('#log-list').innerHTML = `
+    <li><time>2026-11-26</time>${LANG==='zh'?'W46 / W47 收口：两周收掉 10 项，剩 4 项开着；页面从“逐周排期”改成“收口 / 还开着”两段':'W46 / W47 closed: ten items landed in two weeks, four still open; the page shifts from a weekly schedule to closed vs still open'}</li>
     <li><time>2026-10-29</time>${LANG==='zh'?'进入 W44：本周移交 W44，上周转为 16 项归档；课中指标平台、listener、动画片收口，双路 ASR 延期至本周':'Now in W44: the current week moves to W44 and last week is archived at 16 items; metrics platform, listener and animation pipeline closed, dual-ASR slipped into this week'}</li>
     <li><time>2026-10-22</time>${LANG==='zh'?'v2 结构对齐产品里程碑页：只保留页头、周轴与三个时间线节点':'v2 aligned with the product roadmap: header, week rail and three timeline nodes only'}</li>
     <li><time>2026-10-22</time>${LANG==='zh'?'v1 三周看板：27 项带日期交付、27 项在跑':'v1 three-week board: 27 dated items, 27 running'}</li>`;
@@ -712,7 +763,7 @@ function watchNav(){
   function update(){
     const line = 176; /* 吸顶条下沿：顶栏 54 + 周轴 ~72 + 余量 */
     /* 页面顶部时高亮当前周，往下滚再按位置切换 */
-    let current = Math.max(0, WK.findIndex(w => w.core));
+    let current = 0;
     secs.forEach((s, i) => { if(s && s.getBoundingClientRect().top <= line) current = i; });
     links.forEach((a, i) => a.classList.toggle('on', i === current));
   }
