@@ -207,6 +207,12 @@ a.it-t .lk{
 }
 a.it-t .lk svg{width:11px;height:11px;display:block;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 a.it-t:hover .lk{background:#14402c;transform:translateY(-1px)}
+.story a.src{
+  display:inline-block;margin-left:8px;font-size:12px;color:#155f3b;text-decoration:none;
+  border:1px solid #cfe4d6;border-radius:99px;padding:1px 9px;background:#f2f8f4;
+  transition:background .15s,border-color .15s;vertical-align:1px;
+}
+.story a.src:hover{background:#e6f2ea;border-color:#9ecdb0}
 .it-links{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:7px}
 .it-links a{
   display:inline-flex;align-items:center;font-size:12px;color:#155f3b;text-decoration:none;
@@ -511,7 +517,8 @@ const WK = [
         dl:{zh:'7 个已生产的小游戏迁进平台；产品经理可以自己 vibe coding 出新游戏、直接发布，不用排研发',en:'Seven existing mini-games migrated; product managers can vibe-code a new one and ship it without queuing for engineering'} },
       { t:{zh:'raft.build 搭 AI 研发团队',en:'An AI engineering team on raft.build'}, w:'李辰凯 / 冯超', p:'P1', d:{zh:'—',en:'—'}, kind:'bet', gate:'bet', done:true, long:true, dur:{zh:'6 周+',en:'6 weeks+'},
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/Yd7swayt9iL7HQkvi5djRi0LpTC',
-        dl:{zh:'众包标注平台走完开发、测试、上线 —— <mark>第一次把一个真业务系统从头做到线上</mark>，不是 demo',en:'The crowd-annotation platform went build → test → live — <mark>the first real system taken end to end on it</mark>, not a demo'} },
+        dl:{zh:'众包标注平台走完开发、测试、上线 —— <mark>第一次把一个真业务系统从头做到线上</mark>，不是 demo',en:'The crowd-annotation platform went build → test → live — <mark>the first real system taken end to end on it</mark>, not a demo'},
+        access:{zh:'<b>同时</b>landing page 也全部切到 raft.build 的开发方式',en:'<b>Also</b>the landing page has fully moved onto raft.build'} },
       { t:{zh:'云测',en:'Cloud testing'}, w:'许效维', p:'P1', d:{zh:'—',en:'—'}, kind:'bet', gate:'bet', done:true, long:true,
         doc:'https://qjphu5vphyf4.jp.larksuite.com/wiki/OxREwvWuiCDSek92ZGjp7ZBpyc', dl:{zh:'设备借用、主流程回归两项落地，测试不再靠手工点',en:'Device checkout and core regression both landed; testing stops being hand-clicking'} }
     ]},
@@ -538,11 +545,31 @@ const WK = [
         dl:{zh:'按 DinoAI 产研、AI 课、Dino AI native 三个库分完，文档各自归位',en:'Split into DinoAI product-engineering, AI course and Dino AI native; documents filed into their own library'} }
     ]},
 
-  { id:'W48+', href:'#w48', core:true, date:{zh:'还开着',en:'Still open'}, range:{zh:'11/24 起',en:'From Nov 24'},
-    rail:{zh:'11/24 起',en:'From Nov 24'},
-    title:{zh:'还开着',en:'Still open'},
-    story:{zh:'<span class="lab">还开着 · {n} 项</span>不是搁置，是还在等一个明确的人和一个明确的日期。',
-           en:'<span class="lab">Still open · {n} items</span>Not shelved — still waiting for a specific name and a specific date.'},
+  { id:'W48', href:'#w48', core:true, date:{zh:'本周',en:'This week'}, range:{zh:'11/24 – 11/28',en:'Nov 24 – 28'}, days:{zh:'周一 – 周五',en:'Mon – Fri'},
+    rail:{zh:'11/24 – 11/28',en:'Nov 24 – 28'},
+    title:{zh:'本周',en:'This week'},
+    story:{zh:'<span class="lab">W48 · 11/24 – 11/28 · 新立项 {n} 项</span>十一月技术专项定了四条：分地区接 ASR、回放改成两路流、自研 voice agent 去掉对声网的强依赖、模板静态资源预加载。这四条都不加功能，只动两件事——课上得顺不顺，数据拿不拿得到。另外加一条：CRM 的迭代也搬到 raft.build 上，试试同一条流水线扛不扛得住业务节奏。<a class="src" href="https://qjphu5vphyf4.jp.larksuite.com/wiki/YuCRwZesAiFr9nkKDCAji3IHpde" target="_blank" rel="noopener">11 月技术专项</a>',
+           en:'<span class="lab">W48 · Nov 24 – 28 · {n} new bets</span>Four things for November: regional ASR, two-stream replay, an in-house voice agent to loosen the Agora dependency, and preloaded template assets. None of them add features — all four only change how the class runs and how the data comes out. One more on top: CRM work moves onto raft.build too, to see whether the same pipeline holds up against delivery pressure. <a class="src" href="https://qjphu5vphyf4.jp.larksuite.com/wiki/YuCRwZesAiFr9nkKDCAji3IHpde" target="_blank" rel="noopener">November tech programme</a>'},
+    items:[
+      { t:{zh:'课中不同地区接入不同的 ASR',en:'Regional ASR per market'}, w:'翟亚南', p:'—', d:{zh:'—',en:'—'}, gate:'voice',
+        dl:{zh:'生产上按地区切 ASR，接 2 家以上、支持灰度、给出对比测试结果；目标是把识别准确率抬上去，完课率跟着动',en:'Switch ASR per region in production: two or more vendors, gradual rollout, a side-by-side read. Accuracy up, completion follows'} },
+      { t:{zh:'回放录制优化：改成两路流 + 信令本地复现',en:'Replay rebuilt: two streams plus signalling'}, w:'付志强', p:'—', d:{zh:'—',en:'—'}, gate:'base',
+        dl:{zh:'老师一路、学生一路，不再从成品音频里切人；Jenny 的查课团队能直接用，模型训练那边也少一道分离工序（胡兆乾配合）',en:'One stream for the teacher, one for the student — no more splitting a finished recording; the lesson-review team uses it directly, and training skips a diarisation step (with Hu Zhaoqian)'} },
+      { t:{zh:'用 raft.build 加快 CRM 迭代',en:'Speeding up CRM on raft.build'}, w:'文志超', p:'—', d:{zh:'3 周+',en:'3 weeks+'}, kind:'bet', gate:'bet', long:true, dur:{zh:'3 周+',en:'3 weeks+'},
+        dl:{zh:'CRM 的迭代切到 raft.build 上做，用同一条流水线接住需求节奏；先跑一个迭代，再看能省下多少人手',en:'CRM work moves onto raft.build so the same pipeline takes the requirement load; run one cycle first, then see how much headcount it frees'} },
+      { t:{zh:'自研 voice agent，降低对声网依赖',en:'In-house voice agent, less Agora lock-in'}, w:'董鹏', p:'—', d:{zh:'3 周',en:'3 weeks'}, gate:'base',
+        doc:'https://voice-agent.dinoai.ai/business/business-assets/docs/index.html',
+        dl:{zh:'把降噪、消息通道、ASR/TTS 自由组合做成标准基建，按地区接不同厂商；课中流程切过去、测试环境跑通，再交给教研和产品试（翟亚南、蔡露、鲁新建、张帝配合）',en:'Noise suppression, signalling and pluggable ASR/TTS as one standard layer, region by region; the in-class flow moves onto it and goes to curriculum and product for testing (with Zhai Yanan, Cai Lu, Lu Xinjian and Zhang Di)'} },
+      { t:{zh:'模板静态资源预加载',en:'Preload template assets'}, w:'新建', p:'—', d:{zh:'—',en:'—'}, gate:'hold',
+        doc:'https://qjphu5vphyf4.jp.larksuite.com/docx/PSHwdl4e2oXoOmxi2NhjB7dvpJf',
+        dl:{zh:'进课前把模板的静态资源备好，换掉边上课边加载；目标是课堂上少一次卡顿',en:'Stage the template assets before the lesson instead of loading mid-class — one less stutter'} }
+    ]},
+
+  { id:'W49+', href:'#w49', date:{zh:'还没排期',en:'Unscheduled'}, range:{zh:'待定',en:'TBD'},
+    rail:{zh:'待排期',en:'Unscheduled'},
+    title:{zh:'还没排期',en:'Unscheduled'},
+    story:{zh:'<span class="lab">还没排期 · {n} 项</span>不是搁置，是还在等一个明确的人和一个明确的日期。',
+           en:'<span class="lab">Unscheduled · {n} items</span>Not shelved — still waiting for a specific name and a specific date.'},
     items:[
       { t:{zh:'App 登录可靠性',en:'App sign-in reliability'}, w:'王宁宁 / 杨金鹏', p:'—', d:{zh:'—',en:'—'}, gate:'entry', dl:{zh:'D1 注册率 65%，按平台与国家拆解 Top 3',en:'65% D1 registration; top 3 issues by platform and country'} },
       { t:{zh:'课中流程自动化验证',en:'In-class flow automation'}, w:'桂启剑', p:'—', d:{zh:'—',en:'—'}, gate:'base', dl:{zh:'脚本模拟真实上课，循环跑稳定性',en:'Scripts that loop a real lesson to catch instability'} },
@@ -588,11 +615,11 @@ const I18N = {
   zh: {
     docTitle:'Dino AI · Tech State',
     brand:'Dino AI · Tech',
-    nav:[['#top','总览'],['#weeks','两周收口']],
+    nav:[['#top','总览'],['#weeks','收口与在跑']],
     kicker:'Dino AI · Tech State',
     h1:'技术<em>状态</em>',
-    lede:'最近两周，<b>{total} 项</b>：收口 {closed} 项，还开着 {open} 项。再往前三周是封存记录，状态停在 10-29。大部分研发人力在交付业务需求，那部分写在产品里程碑里，不在这页。这里只讲另外两件事——补地基，和探索。',
-    meta:[['周期','W43 – W48+'],['数据截止','2026-11-26'],['整理','冯超'],['来源','技术专项会 · 10 月技术专项']],
+    lede:'这一版 <b>{total} 项</b>：收口 {closed} 项，还开着 {open} 项。再往前三周是封存记录，状态停在 10-29。大部分研发人力在交付业务需求，那部分写在产品里程碑里，不在这页。这里只讲另外两件事——补地基，和探索。',
+    meta:[['周期','W43 – W49+'],['数据截止','2026-11-26'],['整理','冯超'],['来源','技术专项会 · 10 月技术专项']],
     count:'项',
     live:'进行中',
     fbTitle:'反馈',
@@ -603,11 +630,11 @@ const I18N = {
   en: {
     docTitle:'Dino AI · Tech State',
     brand:'Dino AI · Tech',
-    nav:[['#top','Overview'],['#weeks','Two weeks']],
+    nav:[['#top','Overview'],['#weeks','Closed and running']],
     kicker:'Dino AI · Tech State',
     h1:'Tech <em>State</em>',
-    lede:'The last two weeks, <b>{total} items</b>: {closed} closed, {open} still open. The three weeks before that are archived, frozen at Oct 29. Most of engineering is delivering business requirements — that belongs to the product roadmap, not this page. What is here is the other two things: shoring up the floor, and exploring.',
-    meta:[['Cycle','W43 – W48+'],['Data as of','2026-11-26'],['Compiled by','Feng Chao'],['Sources','Tech review · Oct program']],
+    lede:'<b>{total} items</b> on this page: {closed} closed, {open} still open. The three weeks before that are archived, frozen at Oct 29. Most of engineering is delivering business requirements — that belongs to the product roadmap, not this page. What is here is the other two things: shoring up the floor, and exploring.',
+    meta:[['Cycle','W43 – W49+'],['Data as of','2026-11-26'],['Compiled by','Feng Chao'],['Sources','Tech review · Oct program']],
     count:'items',
     live:'LIVE NOW',
     fbTitle:'Feedback',
